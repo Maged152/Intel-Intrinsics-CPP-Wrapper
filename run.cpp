@@ -1,8 +1,10 @@
-#include "AVX_Library.h"
+#include "shakhbat_AVX512.h"
 #include <iostream>
 
 int main()
 {
-	std::cout << qlm::test() << std::endl;
+	qlm::vfloat_t v1{};
+
+	std::cout << v1.Length() << std::endl;
 	return 0;
 }
