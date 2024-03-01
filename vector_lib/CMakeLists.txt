@@ -1,5 +1,10 @@
 ﻿cmake_minimum_required (VERSION 3.2)
-project (shakhbat_AVX512 CXX) 
+project (shakhbat_vector CXX) 
+
+
+  # Add AVX-512 flags if supported
+ #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Qavx512")
+  
 
 # Source files
 file(GLOB_RECURSE SOURCES source/*.cpp )
