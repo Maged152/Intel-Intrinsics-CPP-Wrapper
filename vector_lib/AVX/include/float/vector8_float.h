@@ -1,6 +1,6 @@
 #pragma once
 
-#include "vector_common.h"
+#include "../../common/vector_common.h"
 
 namespace qlm
 {

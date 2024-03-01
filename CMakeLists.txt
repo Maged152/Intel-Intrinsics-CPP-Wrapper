@@ -5,4 +5,4 @@ add_subdirectory (vector_lib)
 add_subdirectory (test)
 
 add_executable(run run.cpp)
-target_link_libraries(run PUBLIC shakhbat_vector)
+target_link_libraries(run PUBLIC shakhbat_avx)
