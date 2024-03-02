@@ -1,5 +1,5 @@
 ﻿cmake_minimum_required (VERSION 3.2)
-project (vector_Example)
+project (vector_Example) 
 
 add_subdirectory (vector_lib)
 add_subdirectory (test)

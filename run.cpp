@@ -1,4 +1,4 @@
-#include "shakhbat_vector.h"
+#include "shakhbat_avx.h"
 #include <iostream>
 
 int main()
@@ -19,6 +19,8 @@ int main()
 
 	v1.Add(v2, v3);
 	v3.Print();
+
+
 
 	return 0;
 }
