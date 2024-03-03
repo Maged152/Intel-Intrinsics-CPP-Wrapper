@@ -11,6 +11,13 @@ namespace qlm
 		return out;
 	}
 
+	v8float_t& v8float_t::Sub(const v8float_t& in) const
+	{
+		v8float_t out;
+		out.vec_reg = _mm256_sub_ps(vec_reg, in.vec_reg);
+		return out;
+	}
+
 	/***********************Memory operations********************************/
 	void v8float_t::Load(const float* mem_addr)
 	{
