@@ -41,7 +41,7 @@ void DoTest(const double min_val, const double max_val)
     vec2.Load(scal2.data);
 
     // do vector operation
-    vec1.Add(vec2, vec3);
+    vec3 = vec1.Add(vec2);
 
     // store results
     vec3.Store(vec_dst.data);
