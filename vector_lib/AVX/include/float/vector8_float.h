@@ -11,12 +11,12 @@ namespace qlm
 
 	public:
 		// ALU operations
-		virtual Status Add(const v8float_t& in, v8float_t& out) const override;
+		virtual v8float_t& Add(const v8float_t& in) const override;
 
 	public:
 		// Memory operations
-		virtual Status Load(const float* mem_addr) override;
-		virtual Status Store(float* mem_addr) const override;
+		virtual void Load(const float* mem_addr) override;
+		virtual void Store(float* mem_addr) const override;
 
 	public:
 		// Operator overloading

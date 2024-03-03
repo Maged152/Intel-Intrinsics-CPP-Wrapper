@@ -11,12 +11,12 @@ namespace qlm
 	{
 	public:
 		// ALU operations
-		virtual Status Add(const vec_t& in, vec_t& out) const = 0;
+		virtual vec_t& Add(const vec_t& in) const = 0;
 
 	public:
 		// Memory operations
-		virtual Status Load(const d_t* mem_addr) = 0;
-		virtual Status Store(d_t* mem_addr) const = 0;
+		virtual void Load(const d_t* mem_addr) = 0;
+		virtual void Store(d_t* mem_addr) const = 0;
 
 	public:
 		// Operators overloading

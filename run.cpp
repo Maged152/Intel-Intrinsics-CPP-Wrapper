@@ -17,7 +17,7 @@ int main()
 	v1.Print();
 	v2.Print();
 
-	v1.Add(v2, v3);
+	v3 = v1.Add(v2);
 	v3.Print();
 
 
