@@ -13,6 +13,8 @@ namespace qlm
 		// ALU operations
 		virtual v8float_t& Add(const v8float_t& in) const override;
 		virtual v8float_t& Sub(const v8float_t& in) const override;
+		virtual v8float_t& Mul(const v8float_t& in) const override;
+		virtual v8float_t& Div(const v8float_t& in) const override;
 
 	public:
 		// Memory operations

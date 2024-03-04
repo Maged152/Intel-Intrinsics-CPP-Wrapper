@@ -13,6 +13,8 @@ namespace qlm
 		// ALU operations
 		virtual vec_t& Add(const vec_t& in) const = 0;
 		virtual vec_t& Sub(const vec_t& in) const = 0;
+		virtual vec_t& Mul(const vec_t& in) const = 0;
+		virtual vec_t& Div(const vec_t& in) const = 0;
 
 	public:
 		// Memory operations

@@ -1,4 +1,4 @@
-﻿#include "float/vector8_float.h"
+﻿#include "vector8_float.h"
 #include <cmath>
 
 namespace qlm
@@ -18,6 +18,19 @@ namespace qlm
 		return out;
 	}
 
+	v8float_t& v8float_t::Mul(const v8float_t& in) const
+	{
+		v8float_t out;
+		out.vec_reg = _mm256_mul_ps(vec_reg, in.vec_reg);
+		return out;
+	}
+
+	v8float_t& v8float_t::Div(const v8float_t& in) const
+	{
+		v8float_t out;
+		out.vec_reg = _mm256_div_ps(vec_reg, in.vec_reg);
+		return out;
+	}
 	/***********************Memory operations********************************/
 	void v8float_t::Load(const float* mem_addr)
 	{
