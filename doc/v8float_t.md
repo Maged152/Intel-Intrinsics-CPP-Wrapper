@@ -9,7 +9,34 @@ using corresponding Intel vector intrinsics instructions.
 
 # Constructors
 
-# Arithmetic Functions
+# Operator overloading
+
+| Operator   | Description                 | Instruction Set |
+|------------|-----------------------------|-----------------|
+| `+`        | Arithmetic addition         | `AVX`           |
+| `-`        | Arithmetic subtraction      | `AVX`           |
+| `*`        | Arithmetic multiplication   | `AVX`           |
+| `/`        | Arithmetic division         | `AVX`           |
+| `[]`       | Vector access               | `AVX`           |
+
+# Memory Operations
+
+## Linear load
+Load 256-bits (composed of 8 packed single-precision (32-bit) floating-point elements) from memory.
+
+```c++
+void Load(const float* mem_addr)
+```
+Instruction Set  : `AVX`
+
+## Linear store
+Store 256-bits (composed of 8 packed single-precision (32-bit) floating-point elements) from into memory.
+```c++
+void Store(float* mem_addr) const
+```
+Instruction Set  : `AVX`
+
+# Arithmetic Operations
 
 ## Addition
 Performs element-wise addition of `this` vector and the `other` vector, and

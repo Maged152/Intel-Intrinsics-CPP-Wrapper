@@ -25,6 +25,24 @@ namespace qlm
 		// Operators overloading
 		virtual d_t operator [](const size_t index) const = 0;
 
+		vec_t& operator +(const vec_t& in) const
+		{
+			return this->Add(in);
+		}
+		vec_t& operator -(const vec_t& in) const
+		{
+			return this->Sub(in);
+		}
+		vec_t& operator *(const vec_t& in) const
+		{
+			return this->Mul(in);
+		}
+
+		vec_t& operator /(const vec_t& in) const
+		{
+			return this->Div(in);
+		}
+
 	public:
 		constexpr size_t SimdWidth() const
 		{
