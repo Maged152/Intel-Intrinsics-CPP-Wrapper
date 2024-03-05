@@ -31,6 +31,29 @@ namespace qlm
 		out.vec_reg = _mm256_div_ps(vec_reg, in.vec_reg);
 		return out;
 	}
+
+	/***********************Logical operations********************************/
+	v8float_t& v8float_t::And(const v8float_t& in) const
+	{
+		v8float_t out;
+		out.vec_reg = _mm256_and_ps(vec_reg, in.vec_reg);
+		return out;
+	}
+
+	v8float_t& v8float_t::Or(const v8float_t& in) const
+	{
+		v8float_t out;
+		out.vec_reg = _mm256_or_ps(vec_reg, in.vec_reg);
+		return out;
+	}
+
+	v8float_t& v8float_t::Xor(const v8float_t& in) const
+	{
+		v8float_t out;
+		out.vec_reg = _mm256_xor_ps(vec_reg, in.vec_reg);
+		return out;
+	}
+
 	/***********************Memory operations********************************/
 	void v8float_t::Load(const float* mem_addr)
 	{

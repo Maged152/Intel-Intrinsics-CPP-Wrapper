@@ -17,6 +17,13 @@ namespace qlm
 		virtual vec_t& Div(const vec_t& in) const = 0;
 
 	public:
+		// Logical operations
+		virtual vec_t& Or(const vec_t& in) const = 0;
+		virtual vec_t& And(const vec_t& in) const = 0;
+		virtual vec_t& Xor(const vec_t& in) const = 0;
+
+
+	public:
 		// Memory operations
 		virtual void Load(const d_t* mem_addr) = 0;
 		virtual void Store(d_t* mem_addr) const = 0;

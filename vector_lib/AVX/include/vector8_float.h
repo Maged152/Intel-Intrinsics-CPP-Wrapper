@@ -17,6 +17,12 @@ namespace qlm
 		virtual v8float_t& Div(const v8float_t& in) const override;
 
 	public:
+		// Logical operators
+		virtual v8float_t& Or(const v8float_t& in) const override;
+		virtual v8float_t& And(const v8float_t& in) const override;
+		virtual v8float_t& Xor(const v8float_t& in) const override;
+
+	public:
 		// Memory operations
 		virtual void Load(const float* mem_addr) override;
 		virtual void Store(float* mem_addr) const override;
