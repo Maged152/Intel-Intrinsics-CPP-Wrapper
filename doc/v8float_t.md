@@ -13,11 +13,14 @@ using corresponding Intel vector intrinsics instructions.
 
 | Operator   | Description                 | Instruction Set |
 |------------|-----------------------------|-----------------|
+| `[]`       | Vector access               | `AVX`           |
 | `+`        | Arithmetic addition         | `AVX`           |
 | `-`        | Arithmetic subtraction      | `AVX`           |
 | `*`        | Arithmetic multiplication   | `AVX`           |
 | `/`        | Arithmetic division         | `AVX`           |
-| `[]`       | Vector access               | `AVX`           |
+| `&`        | Logical and                 | `AVX`           |
+| `|`        | Logical or                  | `AVX`           |
+| `^`        | Logical xor                 | `AVX`           |
 
 # Memory Operations
 
@@ -71,6 +74,34 @@ returns a vector containing the result.
 
 ```c++
 v8float_t& Div(const v8float_t& other) const
+```
+Instruction Set  : `AVX`
+
+# Logical Operations
+## Or
+Performs element-wise bitwise OR of `this` vector and the `other` vector, and
+returns a vector containing the result.
+
+```c++
+v8float_t& Or(const v8float_t& other) const
+```
+Instruction Set  : `AVX`
+
+## And
+Performs element-wise  bitwise AND of `this` vector and the `other` vector, and
+returns a vector containing the result.
+
+```c++
+v8float_t& And(const v8float_t& other) const
+```
+Instruction Set  : `AVX`
+
+## Xor
+Performs element-wise  bitwise XOR of `this` vector and the `other` vector, and
+returns a vector containing the result.
+
+```c++
+v8float_t& Xor(const v8float_t& other) const
 ```
 Instruction Set  : `AVX`
 

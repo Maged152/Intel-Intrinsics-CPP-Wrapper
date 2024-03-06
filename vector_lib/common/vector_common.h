@@ -45,9 +45,23 @@ namespace qlm
 			return this->Mul(in);
 		}
 
+		vec_t& operator |(const vec_t& in) const
+		{
+			return this->Or(in);
+		}
+
+		vec_t& operator &(const vec_t& in) const
+		{
+			return this->And(in);
+		}
+		vec_t& operator ^(const vec_t& in) const
+		{
+			return this->Xor(in);
+		}
+
 		vec_t& operator /(const vec_t& in) const
 		{
-			return this->Div(in);
+
 		}
 
 	public:
