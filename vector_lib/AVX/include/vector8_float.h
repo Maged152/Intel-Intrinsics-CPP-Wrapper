@@ -28,6 +28,16 @@ namespace qlm
 		virtual void Store(float* mem_addr) const override;
 
 	public:
+		// Compare
+		template<Compare_t comp>
+		v8float_t& Compare(const v8float_t& in) const
+		{
+			v8float_t out;
+			out.vec_reg = _mm256_cmp_ps(vec_reg, in.vec_reg, static_cast<int>(comp));
+			return out;
+		}
+
+	public:
 		// Operator overloading
 		virtual float operator [](const size_t index) const;
 

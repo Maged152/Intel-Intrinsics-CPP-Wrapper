@@ -105,3 +105,12 @@ v8float_t& Xor(const v8float_t& other) const
 ```
 Instruction Set  : `AVX`
 
+# Compare
+Compare `this` vector and the `other` vector,  based on the comparison operand specified by `comp`
+returns a vector containing the result.
+
+```c++
+template<Compare_t comp>
+v8float_t& Compare(const v8float_t& other) const
+```
+Instruction Set  : `AVX`

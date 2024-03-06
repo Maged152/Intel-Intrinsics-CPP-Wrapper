@@ -64,6 +64,7 @@ namespace qlm
 	{
 		_mm256_storeu_ps(mem_addr, vec_reg);
 	}
+
 	/***********************Operator overloading********************************/
 	float v8float_t::operator[](const size_t index) const
 	{
