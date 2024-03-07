@@ -11,20 +11,20 @@ namespace qlm
 
 	public:
 		// ALU operations
-		virtual v8float_t& Add(const v8float_t& in) const override;
-		virtual v8float_t& Sub(const v8float_t& in) const override;
-		virtual v8float_t& Mul(const v8float_t& in) const override;
-		virtual v8float_t& Div(const v8float_t& in) const override;
+		virtual v8float_t Add(const v8float_t& in) const override;
+		virtual v8float_t Sub(const v8float_t& in) const override;
+		virtual v8float_t Mul(const v8float_t& in) const override;
+		virtual v8float_t Div(const v8float_t& in) const override;
 
 	public:
 		// Logical operators
-		virtual v8float_t& Or(const v8float_t& in) const override;
-		virtual v8float_t& And(const v8float_t& in) const override;
-		virtual v8float_t& Xor(const v8float_t& in) const override;
+		virtual v8float_t Or(const v8float_t& in) const override;
+		virtual v8float_t And(const v8float_t& in) const override;
+		virtual v8float_t Xor(const v8float_t& in) const override;
 
 	public:
 		// Math functions
-		virtual v8float_t& Sqrt() const override;
+		virtual v8float_t Sqrt() const override;
 
 	public:
 		// Memory operations

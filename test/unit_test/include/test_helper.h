@@ -74,6 +74,15 @@ namespace test
 				dst.data[i] = op(data[i], src.data[i]);
 			}
 		}
+
+		template<typename fun>
+		void Operation(Array<T>& dst, fun& op) const
+		{
+			for (int i = 0; i < len; i++)
+			{
+				dst.data[i] = op(data[i]);
+			}
+		}
 	};
 
 	template<typename T>

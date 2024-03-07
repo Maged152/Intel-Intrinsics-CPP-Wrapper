@@ -46,7 +46,7 @@ Performs element-wise addition of `this` vector and the `other` vector, and
 returns a vector containing the result.
 
 ```c++
-v8float_t& Add(const v8float_t& other) const
+v8float_t Add(const v8float_t& other) const
 ```
 Instruction Set  : `AVX`
 
@@ -55,7 +55,7 @@ Performs element-wise subtraction of `this` vector and the `other` vector, and
 returns a vector containing the result.
 
 ```c++
-v8float_t& Sub(const v8float_t& other) const
+v8float_t Sub(const v8float_t& other) const
 ```
 Instruction Set  : `AVX`
 
@@ -64,7 +64,7 @@ Performs element-wise multiplication of `this` vector and the `other` vector, an
 returns a vector containing the result.
 
 ```c++
-v8float_t& Mul(const v8float_t& other) const
+v8float_t Mul(const v8float_t& other) const
 ```
 Instruction Set  : `AVX`
 
@@ -73,7 +73,7 @@ Performs element-wise division of `this` vector and the `other` vector, and
 returns a vector containing the result.
 
 ```c++
-v8float_t& Div(const v8float_t& other) const
+v8float_t Div(const v8float_t& other) const
 ```
 Instruction Set  : `AVX`
 
@@ -83,7 +83,7 @@ Performs element-wise bitwise OR of `this` vector and the `other` vector, and
 returns a vector containing the result.
 
 ```c++
-v8float_t& Or(const v8float_t& other) const
+v8float_t Or(const v8float_t& other) const
 ```
 Instruction Set  : `AVX`
 
@@ -92,7 +92,7 @@ Performs element-wise  bitwise AND of `this` vector and the `other` vector, and
 returns a vector containing the result.
 
 ```c++
-v8float_t& And(const v8float_t& other) const
+v8float_t And(const v8float_t& other) const
 ```
 Instruction Set  : `AVX`
 
@@ -101,7 +101,7 @@ Performs element-wise  bitwise XOR of `this` vector and the `other` vector, and
 returns a vector containing the result.
 
 ```c++
-v8float_t& Xor(const v8float_t& other) const
+v8float_t Xor(const v8float_t& other) const
 ```
 Instruction Set  : `AVX`
 
@@ -111,7 +111,7 @@ returns a vector containing the result.
 
 ```c++
 template<Compare_t comp>
-v8float_t& Compare(const v8float_t& other) const
+v8float_t Compare(const v8float_t& other) const
 ```
 Instruction Set  : `AVX`
 
@@ -122,6 +122,6 @@ Performs the square root of `this` vector and
 returns a vector containing the result.
 
 ```c++
-v8float_t& Sqrt() const
+v8float_t Sqrt() const
 ```
 Instruction Set  : `AVX`

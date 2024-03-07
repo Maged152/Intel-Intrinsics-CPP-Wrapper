@@ -4,28 +4,28 @@
 namespace qlm
 {
 	/***********************ALU operations********************************/
-	v8float_t& v8float_t::Add(const v8float_t& in) const
+	v8float_t v8float_t::Add(const v8float_t& in) const
 	{
 		v8float_t out;
 		out.vec_reg = _mm256_add_ps(vec_reg, in.vec_reg);
 		return out;
 	}
 
-	v8float_t& v8float_t::Sub(const v8float_t& in) const
+	v8float_t v8float_t::Sub(const v8float_t& in) const
 	{
 		v8float_t out;
 		out.vec_reg = _mm256_sub_ps(vec_reg, in.vec_reg);
 		return out;
 	}
 
-	v8float_t& v8float_t::Mul(const v8float_t& in) const
+	v8float_t v8float_t::Mul(const v8float_t& in) const
 	{
 		v8float_t out;
 		out.vec_reg = _mm256_mul_ps(vec_reg, in.vec_reg);
 		return out;
 	}
 
-	v8float_t& v8float_t::Div(const v8float_t& in) const
+	v8float_t v8float_t::Div(const v8float_t& in) const
 	{
 		v8float_t out;
 		out.vec_reg = _mm256_div_ps(vec_reg, in.vec_reg);
@@ -33,21 +33,21 @@ namespace qlm
 	}
 
 	/***********************Logical operations********************************/
-	v8float_t& v8float_t::And(const v8float_t& in) const
+	v8float_t v8float_t::And(const v8float_t& in) const
 	{
 		v8float_t out;
 		out.vec_reg = _mm256_and_ps(vec_reg, in.vec_reg);
 		return out;
 	}
 
-	v8float_t& v8float_t::Or(const v8float_t& in) const
+	v8float_t v8float_t::Or(const v8float_t& in) const
 	{
 		v8float_t out;
 		out.vec_reg = _mm256_or_ps(vec_reg, in.vec_reg);
 		return out;
 	}
 
-	v8float_t& v8float_t::Xor(const v8float_t& in) const
+	v8float_t v8float_t::Xor(const v8float_t& in) const
 	{
 		v8float_t out;
 		out.vec_reg = _mm256_xor_ps(vec_reg, in.vec_reg);
@@ -55,7 +55,7 @@ namespace qlm
 	}
 
 	/*********************** Math functions********************************/
-	v8float_t& v8float_t::Sqrt() const
+	v8float_t v8float_t::Sqrt() const
 	{
 		v8float_t out;
 		out.vec_reg = _mm256_sqrt_ps(vec_reg);
