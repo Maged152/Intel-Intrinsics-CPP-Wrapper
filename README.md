@@ -59,7 +59,7 @@ int main()
     v2.Load(in + 8);
 
     // Add vectors
-    v3 = v1.Add(v2);
+    v3 = v1 + v2;
 
     // Print the vector
     v3.Print();
