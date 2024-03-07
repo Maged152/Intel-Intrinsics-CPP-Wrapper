@@ -23,6 +23,10 @@ namespace qlm
 		virtual v8float_t& Xor(const v8float_t& in) const override;
 
 	public:
+		// Math functions
+		virtual v8float_t& Sqrt() const override;
+
+	public:
 		// Memory operations
 		virtual void Load(const float* mem_addr) override;
 		virtual void Store(float* mem_addr) const override;

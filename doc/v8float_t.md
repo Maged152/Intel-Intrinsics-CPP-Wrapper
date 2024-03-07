@@ -114,3 +114,14 @@ template<Compare_t comp>
 v8float_t& Compare(const v8float_t& other) const
 ```
 Instruction Set  : `AVX`
+
+# Math Function
+
+## Square Root 
+Performs the square root of `this` vector and
+returns a vector containing the result.
+
+```c++
+v8float_t& Sqrt() const
+```
+Instruction Set  : `AVX`

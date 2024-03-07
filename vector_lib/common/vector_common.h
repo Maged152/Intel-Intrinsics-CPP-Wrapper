@@ -22,6 +22,9 @@ namespace qlm
 		virtual vec_t& And(const vec_t& in) const = 0;
 		virtual vec_t& Xor(const vec_t& in) const = 0;
 
+	public:
+		// Math functions
+		virtual vec_t& Sqrt() const = 0;
 
 	public:
 		// Memory operations

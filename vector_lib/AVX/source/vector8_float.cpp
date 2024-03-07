@@ -54,6 +54,14 @@ namespace qlm
 		return out;
 	}
 
+	/*********************** Math functions********************************/
+	v8float_t& v8float_t::Sqrt() const
+	{
+		v8float_t out;
+		out.vec_reg = _mm256_sqrt_ps(vec_reg);
+		return out;
+	}
+
 	/***********************Memory operations********************************/
 	void v8float_t::Load(const float* mem_addr)
 	{
