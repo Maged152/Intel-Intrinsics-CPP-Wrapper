@@ -25,6 +25,8 @@ namespace qlm
 	public:
 		// Math functions
 		virtual vec_t Sqrt() const = 0;
+		virtual vec_t Max(const vec_t& in) const = 0;
+		virtual vec_t Min(const vec_t& in) const = 0;
 
 	public:
 		// Memory operations

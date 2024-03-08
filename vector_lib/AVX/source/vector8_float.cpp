@@ -81,6 +81,20 @@ namespace qlm
 		return out;
 	}
 
+	v8float_t v8float_t::Max(const v8float_t& in) const
+	{
+		v8float_t out;
+		out.vec_reg = _mm256_max_ps(vec_reg, in.vec_reg);
+		return out;
+	}
+
+	v8float_t v8float_t::Min(const v8float_t& in) const
+	{
+		v8float_t out;
+		out.vec_reg = _mm256_min_ps(vec_reg, in.vec_reg);
+		return out;
+	}
+
 	/***********************Memory operations********************************/
 	void v8float_t::Load(const float* mem_addr)
 	{

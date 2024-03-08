@@ -13,4 +13,4 @@ foreach(TEST_SOURCE ${TEST_SOURCES})
         PRIVATE ../include
         PRIVATE ${GTEST_INCLUDE_DIRS})
     add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME}) # Register the test with CTest
-endforeach() 
+endforeach()

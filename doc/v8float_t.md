@@ -159,3 +159,20 @@ returns a vector containing the result.
 v8float_t Sqrt() const
 ```
 Instruction Set  : `AVX`
+
+## Maximum  
+compare element-wise between `this` vector and the `other` vector, and 
+returns a vector containing the max elements.
+
+```c++
+v8float_t Max(const v8float_t& other) const
+```
+Instruction Set  : `AVX`
+
+## Minimum 
+compare element-wise between `this` vector and the `other` vector, and 
+returns a vector containing the min elements.
+```c++
+v8float_t Min(const v8float_t& other) const
+```
+Instruction Set  : `AVX`
