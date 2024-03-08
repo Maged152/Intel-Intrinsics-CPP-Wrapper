@@ -8,6 +8,26 @@ It provides methods for performing common vector operations
 using corresponding Intel vector intrinsics instructions.
 
 # Constructors
+* default constructor (no initialization)
+```c++
+v8float_t()
+```
+
+* Initialize vector register with single value to all elements.
+```c++
+v8float_t(float value)
+```
+
+* Initialize vector register with supplied values.
+```c++
+v8float_t(float e0, float e1, float e2, float e3, float e4, float e5, float e6, float e7)
+```
+
+
+* Initialize vector register with data loaded from memory.
+```c++
+v8float_t(const float* mem_addr)
+```
 
 # Operator overloading
 
@@ -36,6 +56,20 @@ Instruction Set  : `AVX`
 Store 256-bits (composed of 8 packed single-precision (32-bit) floating-point elements) from into memory.
 ```c++
 void Store(float* mem_addr) const
+```
+Instruction Set  : `AVX`
+
+## Set Single 
+Broadcast single-precision (32-bit) floating-point value to all elements 
+```c++
+void Set(float value);
+```
+Instruction Set  : `AVX`
+
+## Set Vector 
+Set packed single-precision (32-bit) floating-point elements with supplied values.
+```c++
+void Set(float e0, float e1, float e2, float e3, float e4, float e5, float e6, float e7);
 ```
 Instruction Set  : `AVX`
 

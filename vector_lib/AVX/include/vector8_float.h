@@ -10,6 +10,13 @@ namespace qlm
 		__m256 vec_reg;
 
 	public:
+		// Constructors
+		v8float_t();
+		v8float_t(float value);
+		v8float_t(float e0, float e1, float e2, float e3, float e4, float e5, float e6, float e7);
+		v8float_t(const float* mem_addr);
+
+	public:
 		// ALU operations
 		virtual v8float_t Add(const v8float_t& in) const override;
 		virtual v8float_t Sub(const v8float_t& in) const override;
@@ -25,6 +32,11 @@ namespace qlm
 	public:
 		// Math functions
 		virtual v8float_t Sqrt() const override;
+
+	public:
+		// Set 
+		void Set(float value);
+		void Set(float e0, float e1, float e2, float e3, float e4, float e5, float e6, float e7);
 
 	public:
 		// Memory operations

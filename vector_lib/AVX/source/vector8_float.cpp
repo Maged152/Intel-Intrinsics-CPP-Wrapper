@@ -3,6 +3,25 @@
 
 namespace qlm
 {
+	/*********************** Constructors ********************************/
+	v8float_t::v8float_t()
+	{}
+
+	v8float_t::v8float_t(float value)
+	{
+		this->Set(value);
+	}
+
+	v8float_t::v8float_t(float e0, float e1, float e2, float e3, float e4, float e5, float e6, float e7)
+	{
+		this->Set(e0, e1, e2, e3, e4, e5, e6, e7);
+	}
+
+	v8float_t::v8float_t(const float* mem_addr)
+	{
+		this->Load(mem_addr);
+	}
+
 	/***********************ALU operations********************************/
 	v8float_t v8float_t::Add(const v8float_t& in) const
 	{
@@ -71,6 +90,17 @@ namespace qlm
 	void v8float_t::Store(float* mem_addr) const
 	{
 		_mm256_storeu_ps(mem_addr, vec_reg);
+	}
+
+
+	/*********************** Set ********************************/
+	void v8float_t::Set(float value)
+	{
+		vec_reg = _mm256_set1_ps(value);
+	}
+	void v8float_t::Set(float e0, float e1, float e2, float e3, float e4, float e5, float e6, float e7)
+	{
+		vec_reg = _mm256_setr_ps(e0, e1, e2, e3, e4, e5, e6, e7);
 	}
 
 	/***********************Operator overloading********************************/
