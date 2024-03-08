@@ -176,3 +176,23 @@ returns a vector containing the min elements.
 v8float_t Min(const v8float_t& other) const
 ```
 Instruction Set  : `AVX`
+
+## Ceil 
+Round the packed single-precision (32-bit) floating-point elements in `this` up 
+to an integer value, and return the results as a vector of packed single-precision 
+floating-point elements.
+
+```c++
+v8float_t Ceil() const
+```
+Instruction Set  : `AVX`
+
+## Floor
+Round the packed single-precision (32-bit) floating-point elements in `this` down 
+to an integer value, and return the results as a vector of packed single-precision 
+floating-point elements.
+
+```c++
+v8float_t Floor() const
+```
+Instruction Set  : `AVX`

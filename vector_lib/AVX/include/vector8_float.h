@@ -34,6 +34,8 @@ namespace qlm
 		virtual v8float_t Sqrt() const override;
 		virtual v8float_t Max(const v8float_t& in) const override;
 		virtual v8float_t Min(const v8float_t& in) const override;
+		v8float_t Ceil() const;
+		v8float_t Floor() const;
 
 	public:
 		// Set 

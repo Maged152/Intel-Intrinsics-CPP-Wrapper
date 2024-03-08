@@ -95,6 +95,20 @@ namespace qlm
 		return out;
 	}
 
+	v8float_t  v8float_t::Ceil() const
+	{
+		v8float_t out;
+		out.vec_reg = _mm256_ceil_ps(vec_reg);
+		return out;
+	}
+
+	v8float_t  v8float_t::Floor() const
+	{
+		v8float_t out;
+		out.vec_reg = _mm256_floor_ps(vec_reg);
+		return out;
+	}
+
 	/***********************Memory operations********************************/
 	void v8float_t::Load(const float* mem_addr)
 	{
