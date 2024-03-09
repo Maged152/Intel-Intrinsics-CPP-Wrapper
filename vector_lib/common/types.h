@@ -1,5 +1,14 @@
 #pragma once
 
+#define _MM_FROUND_TO_NEAREST_INT        0x00
+#define _MM_FROUND_TO_NEG_INF                0x01
+#define _MM_FROUND_TO_POS_INF                0x02
+#define _MM_FROUND_TO_ZERO                0x03
+#define _MM_FROUND_CUR_DIRECTION        0x04
+
+#define _MM_FROUND_RAISE_EXC                0x00
+#define _MM_FROUND_NO_EXC                0x08
+
 namespace qlm
 {
 	enum class Status_t
@@ -8,7 +17,19 @@ namespace qlm
 		SCALAR_SUCCESS
 	};
 
-	enum class Compare_t : int
+	enum class RoundMode : int
+	{
+		NEAREST_INT_RAISE_EXC = _MM_FROUND_TO_NEAREST_INT | _MM_FROUND_RAISE_EXC,
+		NEAREST_INT_NO_EXC = _MM_FROUND_TO_NEAREST_INT | _MM_FROUND_NO_EXC,
+		NEG_INF_RAISE_EXC = _MM_FROUND_TO_NEG_INF | _MM_FROUND_RAISE_EXC,
+		NEG_INF_NO_EXC = _MM_FROUND_TO_NEG_INF | _MM_FROUND_NO_EXC,
+		POS_INF_RAISE_EXC = _MM_FROUND_TO_POS_INF | _MM_FROUND_RAISE_EXC,
+		POS_INF_NO_EXC = _MM_FROUND_TO_POS_INF | _MM_FROUND_NO_EXC,
+		ZERO_RAISE_EXC = _MM_FROUND_TO_ZERO | _MM_FROUND_RAISE_EXC,
+		ZERO_NO_EXC = _MM_FROUND_TO_ZERO | _MM_FROUND_NO_EXC
+	};
+
+	enum class CompareMode : int
 	{
 		 CMP_EQ_OQ   = 0,	/* Equal (ordered, non-signaling)  */
 		 CMP_LT_OS = 1,	    /* Less-than (ordered, signaling)  */

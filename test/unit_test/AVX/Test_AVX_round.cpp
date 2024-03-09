@@ -4,7 +4,7 @@
 #include <cmath>
 
 // Define the test parameters types
-struct AVXFloor : ::testing::TestWithParam<std::tuple<
+struct AVXRound : ::testing::TestWithParam<std::tuple<
     double, // min value
     double,  // max value
     test::vector_t
@@ -12,7 +12,7 @@ struct AVXFloor : ::testing::TestWithParam<std::tuple<
 {};
 
 
-template <class d_t, class vec_t>
+template <class d_t, class vec_t, qlm::RoundMode round>
 void DoTest(const double min_val, const double max_val)
 {
     constexpr float threshold = 0.0f;
@@ -30,14 +30,14 @@ void DoTest(const double min_val, const double max_val)
     scal1.RandomInit(min_val, max_val);
 
     // do scalar operation
-    auto scal_Floor = [](d_t in) { return std::floor(in); };
-    scal1.Operation(scal_dst, scal_Floor);
+    auto scal_Round = [](d_t in) { return std::round(in); };
+    scal1.Operation(scal_dst, scal_Round);
 
     // load input vector
     vec1.Load(scal1.data);
 
     // do vector operation
-    vec2 = vec1.Floor();
+    vec2 = vec1.Round<round>();
 
     // store results
     vec2.Store(vec_dst.data);
@@ -49,7 +49,7 @@ void DoTest(const double min_val, const double max_val)
 }
 
 // Define a parameterized test case
-TEST_P(AVXFloor, Test_AVXFloor)
+TEST_P(AVXRound, Test_AVXRound)
 {
 
     // extract the parameters
@@ -61,14 +61,14 @@ TEST_P(AVXFloor, Test_AVXFloor)
 
     if (vec_t == test::vector_t::AVX_float)
     {
-        DoTest<float, qlm::v8float_t>(min_val, max_val);
+        DoTest<float, qlm::v8float_t, qlm::RoundMode::NEAREST_INT_NO_EXC>(min_val, max_val);
     }
 }
 
 
 // Instantiate the test case with combinations of values
 INSTANTIATE_TEST_CASE_P(
-    Test_AVXFloor, AVXFloor,
+    Test_AVXRound, AVXRound,
     ::testing::Combine(
         ::testing::Values(0.0, -100.0),
         ::testing::Values(1.0, 100.0),

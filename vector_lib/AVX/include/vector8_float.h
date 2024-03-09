@@ -36,6 +36,13 @@ namespace qlm
 		virtual v8float_t Min(const v8float_t& in) const override;
 		v8float_t Ceil() const;
 		v8float_t Floor() const;
+		template<RoundMode round>
+		v8float_t Round() const
+		{
+			v8float_t out;
+			out.vec_reg = _mm256_round_ps(vec_reg, static_cast<int>(round));
+			return out;
+		}
 
 	public:
 		// Set 
@@ -49,7 +56,7 @@ namespace qlm
 
 	public:
 		// Compare
-		template<Compare_t comp>
+		template<CompareMode comp>
 		v8float_t& Compare(const v8float_t& in) const
 		{
 			v8float_t out;

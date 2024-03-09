@@ -12,7 +12,7 @@ struct AVXCompare : ::testing::TestWithParam<std::tuple<
 {};
 
 
-template <class d_t, class vec_t, qlm::Compare_t comp>
+template <class d_t, class vec_t, qlm::CompareMode comp>
 void DoTest(const double min_val, const double max_val)
 {
     constexpr float threshold = 0.0f;
@@ -65,7 +65,7 @@ TEST_P(AVXCompare, Test_AVXAdd)
 
     if (vec_t == test::vector_t::AVX_float)
     {
-        DoTest<float, qlm::v8float_t, qlm::Compare_t::CMP_EQ_OQ>(min_val, max_val);
+        DoTest<float, qlm::v8float_t, qlm::CompareMode::CMP_EQ_OQ>(min_val, max_val);
     }
 }
 

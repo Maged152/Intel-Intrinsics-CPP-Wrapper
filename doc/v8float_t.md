@@ -139,16 +139,6 @@ v8float_t Xor(const v8float_t& other) const
 ```
 Instruction Set  : `AVX`
 
-# Compare
-Compare `this` vector and the `other` vector,  based on the comparison operand specified by `comp`
-returns a vector containing the result.
-
-```c++
-template<Compare_t comp>
-v8float_t Compare(const v8float_t& other) const
-```
-Instruction Set  : `AVX`
-
 # Math Function
 
 ## Square Root 
@@ -194,5 +184,25 @@ floating-point elements.
 
 ```c++
 v8float_t Floor() const
+```
+Instruction Set  : `AVX`
+
+## Round
+Rounds `this` vector  based on the rounding mode specified by `round`
+returns a vector containing the result.
+
+```c++
+template<RoundMode round>
+v8float_t Round() const
+```
+Instruction Set  : `AVX`
+
+## Compare
+Compares `this` vector and the `other` vector,  based on the comparison operand specified by `comp`
+returns a vector containing the result.
+
+```c++
+template<CompareMode comp>
+v8float_t Compare(const v8float_t& other) const
 ```
 Instruction Set  : `AVX`
