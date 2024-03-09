@@ -29,7 +29,8 @@ namespace test
 {
 	enum class vector_t
 	{
-		AVX_float
+		AVX_float,
+		AVX_double
 	};
 
 	template<typename T>
@@ -115,6 +116,10 @@ namespace test
 		{
 		case vector_t::AVX_float:
 			out << "v8float_t";
+			break;
+
+		case vector_t::AVX_double:
+			out << "v4double_t";
 			break;
 		}
 

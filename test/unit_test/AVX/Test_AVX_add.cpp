@@ -15,7 +15,7 @@ struct AVXAdd : ::testing::TestWithParam<std::tuple<
 template <class d_t, class vec_t>
 void DoTest(const double min_val, const double max_val)
 {
-    constexpr float threshold = 0.0f;
+    constexpr d_t threshold = 0.0;
 
     // vector objects
     vec_t vec1{};
@@ -67,6 +67,10 @@ TEST_P(AVXAdd, Test_AVXAdd)
     {
         DoTest<float, qlm::v8float_t>(min_val, max_val);
     }
+    else if (vec_t == test::vector_t::AVX_double)
+    {
+        DoTest<double, qlm::v4double_t>(min_val, max_val);
+    }
 }
 
 
@@ -76,5 +80,5 @@ INSTANTIATE_TEST_CASE_P(
     ::testing::Combine(
         ::testing::Values(0.0, -100.0),
         ::testing::Values(1.0, 100.0),
-        ::testing::Values(test::vector_t::AVX_float)
+        ::testing::Values(test::vector_t::AVX_float, test::vector_t::AVX_double)
     ));
