@@ -67,6 +67,10 @@ TEST_P(AVXSub, Test_AVXAdd)
     {
         DoTest<float, qlm::v8float_t>(min_val, max_val);
     }
+    else if (vec_t == test::vector_t::AVX_double)
+    {
+        DoTest<double, qlm::v4double_t>(min_val, max_val);
+    }
 }
 
 
@@ -76,5 +80,5 @@ INSTANTIATE_TEST_CASE_P(
     ::testing::Combine(
         ::testing::Values(0.0, -100.0),
         ::testing::Values(1.0, 100.0),
-        ::testing::Values(test::vector_t::AVX_float)
+        ::testing::Values(test::vector_t::AVX_float, test::vector_t::AVX_double)
     ));

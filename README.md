@@ -35,6 +35,9 @@ For example, `v8float_t` represents a vector of eight single-precision floating-
 * **Float Vectors:**
     * [`v8float_t`](doc/v8float_t.md)
 
+* **double Vectors:**
+    * [`v4double_t`](doc/v4double_t.md)
+
 
 ## Building & Linking
 
@@ -50,16 +53,16 @@ int main()
 {
 
     float out[8];
-    float in[16] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+    float in_arr[8] = {8, 9, 10, 11, 12, 13, 14, 15};
      
-    qlm::v8float_t v1, v2, v3;
+    qlm::v8float_t in1 {0, 1, 2, 3, 4, 5, 6, 7}
+    qlm::v8float_t in2 {};
 
     // Load data to the vector registers
-    v1.Load(in);
-    v2.Load(in + 8);
+    in2.Load(in_arr);
 
     // Add vectors
-    v3 = v1 + v2;
+    qlm::v8float_t v3 = v1 + v2;
 
     // Print the vector
     v3.Print();
