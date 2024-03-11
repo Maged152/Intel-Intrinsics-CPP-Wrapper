@@ -8,8 +8,8 @@ enable_testing()
 
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE) 
 
-add_subdirectory(googletest) 
-add_subdirectory(unit_test/AVX)
+add_subdirectory(googletest)
+add_subdirectory(unit_test)
 
 
 

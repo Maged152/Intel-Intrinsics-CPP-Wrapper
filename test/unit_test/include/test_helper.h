@@ -30,7 +30,8 @@ namespace test
 	enum class vector_t
 	{
 		AVX_float,
-		AVX_double
+		AVX_double,
+		AVX2_int32
 	};
 
 	template<typename T>
@@ -55,15 +56,15 @@ namespace test
 		}
 
 	public:
-		void RandomInit(const T min_value, const T max_value)
+		void RandomInit(const double min_value, const double max_value)
 		{
 			std::random_device rd;
 			std::mt19937 gen(rd());
-			std::uniform_real_distribution<T> dis(min_value, max_value);
+			std::uniform_real_distribution<double> dis(min_value, max_value);
 
 			for (int i = 0; i < len; i++)
 			{
-				data[i] = dis(gen);
+				data[i] = (T)dis(gen);
 			}
 		}
 
@@ -120,6 +121,10 @@ namespace test
 
 		case vector_t::AVX_double:
 			out << "v4double_t";
+			break;
+
+		case vector_t::AVX2_int32:
+			out << "v8int32_t";
 			break;
 		}
 

@@ -31,7 +31,7 @@ namespace qlm
 
 	public:
 		// Math functions
-		virtual v4double_t Sqrt() const override;
+		v4double_t Sqrt() const;
 		virtual v4double_t Max(const v4double_t& in) const override;
 		virtual v4double_t Min(const v4double_t& in) const override;
 		v4double_t Ceil() const;

@@ -1,6 +1,7 @@
 #include "test_helper.h"
 #include "gtest/gtest.h"
 #include "shakhbat_avx.h"
+#include "shakhbat_avx2.h"
 #include <functional>
 
 // Define the test parameters types
@@ -15,7 +16,7 @@ struct AVXAnd : ::testing::TestWithParam<std::tuple<
 template <class d_t, class vec_t>
 void DoTest(const double min_val, const double max_val)
 {
-    constexpr float threshold = 0.0f;
+    constexpr d_t threshold = 0.0f;
 
     // vector objects
     vec_t vec1{};
@@ -42,6 +43,18 @@ void DoTest(const double min_val, const double max_val)
             int32_t* int_in2 = reinterpret_cast<int32_t*>(&in2);
             int32_t* int_out = reinterpret_cast<int32_t*>(&out);
             *int_out = *int_in1 & *int_in2;
+        }
+        else if constexpr (std::is_same_v<d_t, double>)
+        {
+            int64_t* int_in1 = reinterpret_cast<int64_t*>(&in1);
+            int64_t* int_in2 = reinterpret_cast<int64_t*>(&in2);
+            int64_t* int_out = reinterpret_cast<int64_t*>(&out);
+            *int_out = *int_in1 & *int_in2;
+
+        }
+        else
+        {
+            out = in1 & in2;
         }
         
         return out;
@@ -83,6 +96,10 @@ TEST_P(AVXAnd, Test_AVXAdd)
     {
         DoTest<double, qlm::v4double_t>(min_val, max_val);
     }
+    else if (vec_t == test::vector_t::AVX2_int32)
+    {
+        DoTest<int32_t, qlm::v8int32_t>(min_val, max_val);
+    }
 }
 
 
@@ -92,5 +109,5 @@ INSTANTIATE_TEST_CASE_P(
     ::testing::Combine(
         ::testing::Values(0.0, -100.0),
         ::testing::Values(1.0, 100.0),
-        ::testing::Values(test::vector_t::AVX_float, test::vector_t::AVX_double)
+        ::testing::Values(test::vector_t::AVX_float, test::vector_t::AVX_double, test::vector_t::AVX2_int32)
     ));
