@@ -1,6 +1,7 @@
 #include "test_helper.h"
 #include "gtest/gtest.h"
 #include "shakhbat_avx.h"
+#include "shakhbat_avx2.h"
 #include <cmath>
 
 // Define the test parameters types
@@ -15,7 +16,7 @@ struct AVXMax : ::testing::TestWithParam<std::tuple<
 template <class d_t, class vec_t>
 void DoTest(const double min_val, const double max_val)
 {
-    constexpr float threshold = 0.0f;
+     constexpr d_t threshold = 0;
 
     // vector objects
     vec_t vec1{};

@@ -31,7 +31,8 @@ namespace test
 	{
 		AVX_float,
 		AVX_double,
-		AVX2_int32
+		AVX2_int32,
+		AVX2_uint32
 	};
 
 	template<typename T>
@@ -87,12 +88,25 @@ namespace test
 		}
 	};
 
+	template <typename T>
+	T abs(T value) 
+	{
+		if (value < 0) 
+		{
+			return -value;
+		}
+		else 
+		{
+			return value;
+		}
+	}
+
 	template<typename T>
 	inline bool Compare(const Array<T>& arr1, const Array<T>& arr2, const T threshold)
 	{
 		for (int i = 0; i < arr1.len; i++)
 		{
-			if (std::abs(arr1.data[i] - arr2.data[i]) > threshold)
+			if (abs(arr1.data[i] - arr2.data[i]) > threshold)
 			{
 				return false;
 			}
@@ -126,6 +140,11 @@ namespace test
 		case vector_t::AVX2_int32:
 			out << "v8int32_t";
 			break;
+
+		case vector_t::AVX2_uint32:
+			out << "v8uint32_t";
+			break;
+
 		}
 
 		return out;

@@ -46,8 +46,8 @@ namespace qlm
 
 	public:
 		// Compare
-		v8int32_t& Equal(const v8int32_t& in) const;
-		v8int32_t& Greater(const v8int32_t& in) const;
+		v8int32_t Equal(const v8int32_t& in) const;
+		v8int32_t Greater(const v8int32_t& in) const;
 
 	public:
 		// Operator overloading

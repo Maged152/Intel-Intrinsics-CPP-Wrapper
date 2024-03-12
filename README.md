@@ -38,6 +38,13 @@ For example, `v8float_t` represents a vector of eight single-precision floating-
 * **double Vectors:**
     * [`v4double_t`](doc/v4double_t.md)
 
+* **uint32 Vectors:**
+    * [`v8uint32_t`](doc/v8uint32_t.md)
+
+* **int32 Vectors:**
+    * [`v8int32_t`](doc/v8int32_t.md)
+
+
 
 ## Building & Linking
 

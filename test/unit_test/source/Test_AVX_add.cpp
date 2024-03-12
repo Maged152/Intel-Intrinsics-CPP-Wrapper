@@ -48,7 +48,7 @@ void DoTest(const double min_val, const double max_val)
     vec3.Store(vec_dst.data);
 
     // compare results
-    bool res = test::Compare(vec_dst, scal_dst, threshold);
+    bool res = test::Compare<d_t>(vec_dst, scal_dst, threshold);
 
     EXPECT_EQ(res, true);
 }
@@ -76,6 +76,10 @@ TEST_P(AVXAdd, Test_AVXAdd)
     {
         DoTest<int32_t, qlm::v8int32_t>(min_val, max_val);
     }
+    else if (vec_t == test::vector_t::AVX2_uint32)
+    {
+        DoTest<uint32_t, qlm::v8uint32_t>(min_val, max_val);
+    }
 }
 
 
@@ -85,5 +89,6 @@ INSTANTIATE_TEST_CASE_P(
     ::testing::Combine(
         ::testing::Values(0.0, -100.0),
         ::testing::Values(1.0, 100.0),
-        ::testing::Values(test::vector_t::AVX_float, test::vector_t::AVX_double, test::vector_t::AVX2_int32)
+        ::testing::Values(test::vector_t::AVX_float, test::vector_t::AVX_double,
+                          test::vector_t::AVX2_int32, test::vector_t::AVX2_uint32)
     ));

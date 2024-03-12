@@ -15,7 +15,7 @@ struct AVXRound : ::testing::TestWithParam<std::tuple<
 template <class d_t, class vec_t, qlm::RoundMode round>
 void DoTest(const double min_val, const double max_val)
 {
-    constexpr float threshold = 0.0f;
+     constexpr d_t threshold = 0;
 
     // vector objects
     vec_t vec1{};

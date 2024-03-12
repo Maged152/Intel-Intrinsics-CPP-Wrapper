@@ -1,7 +1,7 @@
 #include "test_helper.h"
 #include "gtest/gtest.h"
 #include "shakhbat_avx.h"
-
+#include "shakhbat_avx2.h"
 
 // Define the test parameters types
 struct AVXSub : ::testing::TestWithParam<std::tuple<
@@ -15,7 +15,7 @@ struct AVXSub : ::testing::TestWithParam<std::tuple<
 template <class d_t, class vec_t>
 void DoTest(const double min_val, const double max_val)
 {
-    constexpr float threshold = 0.0f;
+     constexpr d_t threshold = 0;
 
     // vector objects
     vec_t vec1{};
@@ -71,6 +71,14 @@ TEST_P(AVXSub, Test_AVXAdd)
     {
         DoTest<double, qlm::v4double_t>(min_val, max_val);
     }
+    else if (vec_t == test::vector_t::AVX2_int32)
+    {
+        DoTest<int32_t, qlm::v8int32_t>(min_val, max_val);
+    }
+    else if (vec_t == test::vector_t::AVX2_uint32)
+    {
+        DoTest<uint32_t, qlm::v8uint32_t>(min_val, max_val);
+    }
 }
 
 
@@ -80,5 +88,6 @@ INSTANTIATE_TEST_CASE_P(
     ::testing::Combine(
         ::testing::Values(0.0, -100.0),
         ::testing::Values(1.0, 100.0),
-        ::testing::Values(test::vector_t::AVX_float, test::vector_t::AVX_double)
+        ::testing::Values(test::vector_t::AVX_float, test::vector_t::AVX_double,
+                          test::vector_t::AVX2_int32, test::vector_t::AVX2_uint32)
     ));
