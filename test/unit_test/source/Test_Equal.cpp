@@ -2,10 +2,10 @@
 #include "gtest/gtest.h"
 #include "shakhbat_avx.h"
 #include "shakhbat_avx2.h"
-#include <cmath>
+#include <functional>
 
 // Define the test parameters types
-struct AVXMax : ::testing::TestWithParam<std::tuple<
+struct AVXEqual : ::testing::TestWithParam<std::tuple<
     double, // min value
     double,  // max value
     test::vector_t
@@ -16,7 +16,7 @@ struct AVXMax : ::testing::TestWithParam<std::tuple<
 template <class d_t, class vec_t>
 void DoTest(const double min_val, const double max_val)
 {
-     constexpr d_t threshold = 0;
+    constexpr d_t threshold = 0;
 
     // vector objects
     vec_t vec1{};
@@ -34,15 +34,15 @@ void DoTest(const double min_val, const double max_val)
     scal2.RandomInit(min_val, max_val);
 
     // do scalar operation
-    auto scal_add = [](d_t in1, d_t in2) { return std::max(in1, in2); };
-    scal1.Operation(scal2, scal_dst, scal_add);
+    auto scal_Compare = [](d_t in1, d_t in2) { return in1 == in2 ? 1 : 0; };
+    scal1.Operation(scal2, scal_dst, scal_Compare);
 
     // load input vector
     vec1.Load(scal1.data);
     vec2.Load(scal2.data);
 
     // do vector operation
-    vec3 = vec1.Max(vec2);
+    vec3 = vec1.Equal(vec2);
 
     // store results
     vec3.Store(vec_dst.data);
@@ -54,7 +54,7 @@ void DoTest(const double min_val, const double max_val)
 }
 
 // Define a parameterized test case
-TEST_P(AVXMax, Test_AVXMax)
+TEST_P(AVXEqual, Test_AVXEqual)
 {
 
     // extract the parameters
@@ -64,15 +64,7 @@ TEST_P(AVXMax, Test_AVXMax)
     test::PrintParameter(max_val, "max_val");
     test::PrintParameter(vec_t, "data type");
 
-    if (vec_t == test::vector_t::AVX_float)
-    {
-        DoTest<float, qlm::v8float_t>(min_val, max_val);
-    }
-    else if (vec_t == test::vector_t::AVX_double)
-    {
-        DoTest<double, qlm::v4double_t>(min_val, max_val);
-    }
-    else if (vec_t == test::vector_t::AVX2_int32)
+    if (vec_t == test::vector_t::AVX2_int32)
     {
         DoTest<int32_t, qlm::v8int32_t>(min_val, max_val);
     }
@@ -85,10 +77,9 @@ TEST_P(AVXMax, Test_AVXMax)
 
 // Instantiate the test case with combinations of values
 INSTANTIATE_TEST_CASE_P(
-    Test_AVXMax, AVXMax,
+    Test_AVXEqual, AVXEqual,
     ::testing::Combine(
-        ::testing::Values(0.0, -100.0),
-        ::testing::Values(1.0, 100.0),
-        ::testing::Values(test::vector_t::AVX_float, test::vector_t::AVX_double,
-            test::vector_t::AVX2_int32, test::vector_t::AVX2_uint32)
+        ::testing::Values(0.0,2.0),
+        ::testing::Values(10.0, 100.0),
+        ::testing::Values(test::vector_t::AVX2_int32, test::vector_t::AVX2_uint32)
     ));

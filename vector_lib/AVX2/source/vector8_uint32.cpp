@@ -110,6 +110,22 @@ namespace qlm
 		vec_reg = _mm256_setr_epi32(e0, e1, e2, e3, e4, e5, e6, e7);
 	}
 
+	/*********************** Compare ********************************/
+	v8uint32_t v8uint32_t::Equal(const v8uint32_t& in) const
+	{
+		v8uint32_t out;
+		out.vec_reg = _mm256_cmpeq_epi32(vec_reg, in.vec_reg);
+		return out;
+	}
+
+	v8uint32_t v8uint32_t::Greater(const v8uint32_t& in) const
+	{
+		v8uint32_t out;
+		out.vec_reg = _mm256_cmpgt_epi32(vec_reg, in.vec_reg);
+		return out;
+	}
+
+
 	/***********************Operator overloading********************************/
 	uint32_t v8uint32_t::operator[](const size_t index) const
 	{

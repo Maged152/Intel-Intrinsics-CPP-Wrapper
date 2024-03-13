@@ -50,28 +50,28 @@ Load 256-bits (composed of 8 packed unsigned integer (32-bit) elements) from mem
 ```c++
 void Load(const uint32_t* mem_addr)
 ```
-Instruction Set  : `AVX2`
+Instruction Set  : `AVX512F` + `AVX512VL`
 
 ## Linear store
 Store 256-bits (composed of 8 packed unsigned integer (32-bit) elements) from into memory.
 ```c++
 void Store(uint32_t* mem_addr) const
 ```
-Instruction Set  : `AVX2`
+Instruction Set  : `AVX512F` + `AVX512VL`
 
 ## Set Single 
 Broadcast unsigned integer (32-bit) value to all elements 
 ```c++
 void Set(uint32_t value);
 ```
-Instruction Set  : `AVX2`
+Instruction Set  : `AVX`
 
 ## Set Vector 
 Set packed unsigned integer (32-bit) elements with supplied values.
 ```c++
 void Set(uint32_t e0, uint32_t e1, uint32_t e2, uint32_t e3, uint32_t e4, uint32_t e5, uint32_t e6, uint32_t e7);
 ```
-Instruction Set  : `AVX2`
+Instruction Set  : `AVX`
 
 # Arithmetic Operations
 

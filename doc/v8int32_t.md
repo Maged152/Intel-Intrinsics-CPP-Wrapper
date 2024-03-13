@@ -50,14 +50,14 @@ Load 256-bits (composed of 8 packed signed integer (32-bit) elements) from memor
 ```c++
 void Load(const int32_t* mem_addr)
 ```
-Instruction Set  : `AVX2`
+Instruction Set  : `AVX512F` + `AVX512VL`
 
 ## Linear store
 Store 256-bits (composed of 8 packed signed integer (32-bit) elements) from into memory.
 ```c++
 void Store(int32_t* mem_addr) const
 ```
-Instruction Set  : `AVX2`
+Instruction Set  : `AVX512F` + `AVX512VL`
 
 ## Set Single 
 Broadcast signed integer (32-bit) value to all elements 

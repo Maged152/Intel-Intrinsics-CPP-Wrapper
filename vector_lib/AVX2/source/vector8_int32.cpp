@@ -62,14 +62,14 @@ namespace qlm
 	v8int32_t v8int32_t::Or(const v8int32_t& in) const
 	{
 		v8int32_t out;
-		out.vec_reg = _mm256_or_epi32(vec_reg, in.vec_reg);
+		out.vec_reg = _mm256_or_si256(vec_reg, in.vec_reg);
 		return out;
 	}
 
 	v8int32_t v8int32_t::Xor(const v8int32_t& in) const
 	{
 		v8int32_t out;
-		out.vec_reg = _mm256_xor_epi32(vec_reg, in.vec_reg);
+		out.vec_reg = _mm256_xor_si256(vec_reg, in.vec_reg);
 		return out;
 	}
 
@@ -108,6 +108,21 @@ namespace qlm
 	void v8int32_t::Set(int32_t e0, int32_t e1, int32_t e2, int32_t e3, int32_t e4, int32_t e5, int32_t e6, int32_t e7)
 	{
 		vec_reg = _mm256_setr_epi32(e0, e1, e2, e3, e4, e5, e6, e7);
+	}
+
+	/*********************** Compare ********************************/
+	v8int32_t v8int32_t::Equal(const v8int32_t& in) const
+	{
+		v8int32_t out;
+		out.vec_reg = _mm256_cmpeq_epi32(vec_reg, in.vec_reg);
+		return out;
+	}
+
+	v8int32_t v8int32_t::Greater(const v8int32_t& in) const
+	{
+		v8int32_t out;
+		out.vec_reg = _mm256_cmpgt_epi32(vec_reg, in.vec_reg);
+		return out;
 	}
 
 	/***********************Operator overloading********************************/
