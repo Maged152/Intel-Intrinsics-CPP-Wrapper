@@ -5,7 +5,7 @@
 #include <functional>
 
 // Define the test parameters types
-struct AVXEqual : ::testing::TestWithParam<std::tuple<
+struct AVXGreater : ::testing::TestWithParam<std::tuple<
     double, // min value
     double,  // max value
     test::vector_t
@@ -34,7 +34,7 @@ void DoTest(const double min_val, const double max_val)
     scal2.RandomInit(min_val, max_val);
 
     // do scalar operation
-    auto scal_Compare = [](d_t in1, d_t in2) { return in1 == in2 ? 0xFFFFFFFF : 0; };
+    auto scal_Compare = [](d_t in1, d_t in2) { return in1 > in2 ? 0xFFFFFFFF : 0; };
     scal1.Operation(scal2, scal_dst, scal_Compare);
 
     // load input vector
@@ -42,7 +42,7 @@ void DoTest(const double min_val, const double max_val)
     vec2.Load(scal2.data);
 
     // do vector operation
-    vec3 = vec1.Equal(vec2);
+    vec3 = vec1.Greater(vec2);
 
     // store results
     vec3.Store(vec_dst.data);
@@ -54,7 +54,7 @@ void DoTest(const double min_val, const double max_val)
 }
 
 // Define a parameterized test case
-TEST_P(AVXEqual, Test_AVXEqual)
+TEST_P(AVXGreater, Test_AVXGreater)
 {
 
     // extract the parameters
@@ -77,9 +77,9 @@ TEST_P(AVXEqual, Test_AVXEqual)
 
 // Instantiate the test case with combinations of values
 INSTANTIATE_TEST_CASE_P(
-    Test_AVXEqual, AVXEqual,
+    Test_AVXGreater, AVXGreater,
     ::testing::Combine(
-        ::testing::Values(0.0,2.0),
+        ::testing::Values(0.0, 2.0),
         ::testing::Values(10.0, 100.0),
         ::testing::Values(test::vector_t::AVX2_int32, test::vector_t::AVX2_uint32)
     ));

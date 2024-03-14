@@ -102,17 +102,22 @@ namespace test
 	}
 
 	template<typename T>
-	inline bool Compare(const Array<T>& arr1, const Array<T>& arr2, const T threshold)
+	inline bool Compare(const Array<T>& arr1, const Array<T>& arr2, const T threshold, const bool show = true)
 	{
+		bool res = true;
 		for (int i = 0; i < arr1.len; i++)
 		{
 			if (abs(arr1.data[i] - arr2.data[i]) > threshold)
 			{
-				return false;
+				if (show)
+				{
+					std::cout << arr1.data[i] << " vs " << arr2.data[i] << "\n";
+				}
+				res = false;
 			}
 		}
 
-		return true;
+		return res;
 	}
 	
 	// print
