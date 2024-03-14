@@ -1,7 +1,7 @@
 #include "test_helper.h"
 #include "gtest/gtest.h"
 #include "shakhbat_avx.h"
-#include "shakhbat_avx2.h"
+
 #include <cmath>
 
 // Define the test parameters types

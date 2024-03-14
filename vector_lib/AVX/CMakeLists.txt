@@ -1,6 +1,5 @@
 ﻿cmake_minimum_required (VERSION 3.2)
-project (shakhbat_avx CXX) 
-  
+project (shakhbat_avx CXX)
 
 # Source files
 file(GLOB_RECURSE SOURCES source/*.cpp )
