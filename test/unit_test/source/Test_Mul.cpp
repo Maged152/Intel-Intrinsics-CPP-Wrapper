@@ -42,7 +42,14 @@ void DoTest(const double min_val, const double max_val)
     vec2.Load(scal2.data);
 
     // do vector operation
-    vec3 = vec1.Mul(vec2);
+    if constexpr (std::is_integral_v<d_t>)
+    {
+        vec3 = vec1.MulLo(vec2);
+    }
+    else
+    {
+        vec3 = vec1.Mul(vec2);
+    }
 
     // store results
     vec3.Store(vec_dst.data);
@@ -72,6 +79,14 @@ TEST_P(AVXMul, Test_AVXAdd)
     {
         DoTest<double, qlm::v4double_t>(min_val, max_val);
     }
+    else if (vec_t == test::vector_t::AVX2_int32)
+    {
+        DoTest<int32_t, qlm::v8int32_t>(min_val, max_val);
+    }
+    else if (vec_t == test::vector_t::AVX2_uint32)
+    {
+        DoTest<uint32_t, qlm::v8uint32_t>(min_val, max_val);
+    }
 }
 
 
@@ -81,5 +96,6 @@ INSTANTIATE_TEST_CASE_P(
     ::testing::Combine(
         ::testing::Values(0.0, -100.0),
         ::testing::Values(1.0, 100.0),
-        ::testing::Values(test::vector_t::AVX_float, test::vector_t::AVX_double)
+        ::testing::Values(test::vector_t::AVX_float, test::vector_t::AVX_double,
+            test::vector_t::AVX2_int32, test::vector_t::AVX2_uint32)
     ));

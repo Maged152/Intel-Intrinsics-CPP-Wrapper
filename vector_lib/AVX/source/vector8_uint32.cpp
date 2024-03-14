@@ -37,10 +37,10 @@ namespace qlm
 		return out;
 	}
 
-	v8uint32_t v8uint32_t::Mul(const v8uint32_t& in) const
+	v8uint32_t v8uint32_t::MulLo(const v8uint32_t& in) const
 	{
 		v8uint32_t out;
-		out.vec_reg = _mm256_mul_epu32(vec_reg, in.vec_reg);
+		out.vec_reg = _mm256_mullo_epi32(vec_reg, in.vec_reg);
 		return out;
 	}
 

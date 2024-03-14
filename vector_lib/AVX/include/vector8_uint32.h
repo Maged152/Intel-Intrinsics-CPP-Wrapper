@@ -20,7 +20,7 @@ namespace qlm
 		// ALU operations
 		virtual v8uint32_t Add(const v8uint32_t& in) const override;
 		virtual v8uint32_t Sub(const v8uint32_t& in) const override;
-		virtual v8uint32_t Mul(const v8uint32_t& in) const override;
+		v8uint32_t MulLo(const v8uint32_t& in) const;
 		virtual v8uint32_t Div(const v8uint32_t& in) const override;
 
 	public:

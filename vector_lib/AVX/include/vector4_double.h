@@ -20,7 +20,7 @@ namespace qlm
 		// ALU operations
 		virtual v4double_t Add(const v4double_t& in) const override;
 		virtual v4double_t Sub(const v4double_t& in) const override;
-		virtual v4double_t Mul(const v4double_t& in) const override;
+		v4double_t Mul(const v4double_t& in) const;
 		virtual v4double_t Div(const v4double_t& in) const override;
 
 	public:

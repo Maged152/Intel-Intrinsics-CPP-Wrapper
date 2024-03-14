@@ -93,12 +93,13 @@ v8int32_t Sub(const v8int32_t& other) const
 ```
 Instruction Set  : `AVX2`
 
-## Multiplication
-Performs element-wise multiplication of `this` vector and the `other` vector, and
+## Multiplication Low
+Performs element-wise multiplication of `this` vector and the `other` vector,
+producing intermediate 64-bit integers, and store the low 32 bits and
 returns a vector containing the result.
 
 ```c++
-v8int32_t Mul(const v8int32_t& other) const
+v8int32_t MulLo(const v8int32_t& other) const
 ```
 Instruction Set  : `AVX2`
 
