@@ -39,7 +39,7 @@ v8int32_t(const int32_t* mem_addr)
 | `*`        | Arithmetic multiplication   | `AVX2`           |
 | `/`        | Arithmetic division         | `AVX2`           |
 | `&`        | Logical and                 | `AVX2`           |
-| `|`        | Logical or                  | `AVX2`           |
+| `\|`        | Logical or                  | `AVX2`           |
 | `^`        | Logical xor                 | `AVX2`           |
 
 # Memory Operations

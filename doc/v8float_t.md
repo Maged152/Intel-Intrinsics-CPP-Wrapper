@@ -39,7 +39,7 @@ v8float_t(const float* mem_addr)
 | `*`        | Arithmetic multiplication   | `AVX`           |
 | `/`        | Arithmetic division         | `AVX`           |
 | `&`        | Logical and                 | `AVX`           |
-| `|`        | Logical or                  | `AVX`           |
+| `\|`        | Logical or                  | `AVX`           |
 | `^`        | Logical xor                 | `AVX`           |
 
 # Memory Operations
