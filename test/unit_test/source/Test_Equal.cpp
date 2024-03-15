@@ -64,13 +64,17 @@ TEST_P(AVXEqual, Test_AVXEqual)
     test::PrintParameter(max_val, "max_val");
     test::PrintParameter(vec_t, "data type");
 
-    if (vec_t == test::vector_t::AVX2_int32)
+    if (vec_t == test::vector_t::AVX_int32)
     {
         DoTest<int32_t, qlm::v8int32_t>(min_val, max_val);
     }
-    else if (vec_t == test::vector_t::AVX2_uint32)
+    else if (vec_t == test::vector_t::AVX_uint32)
     {
         DoTest<uint32_t, qlm::v8uint32_t>(min_val, max_val);
+    }
+    else if (vec_t == test::vector_t::AVX_int64)
+    {
+        DoTest<int64_t, qlm::v4int64_t>(min_val, max_val);
     }
 }
 
@@ -81,5 +85,5 @@ INSTANTIATE_TEST_CASE_P(
     ::testing::Combine(
         ::testing::Values(0.0,2.0),
         ::testing::Values(10.0, 100.0),
-        ::testing::Values(test::vector_t::AVX2_int32, test::vector_t::AVX2_uint32)
+        ::testing::Values(test::vector_t::AVX_int32, test::vector_t::AVX_uint32)
     ));

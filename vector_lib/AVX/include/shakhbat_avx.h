@@ -4,3 +4,5 @@
 #include "vector4_double.h"
 #include "vector8_int32.h"
 #include "vector8_uint32.h"
+#include "vector4_int64.h"
+#include "vector4_uint64.h"

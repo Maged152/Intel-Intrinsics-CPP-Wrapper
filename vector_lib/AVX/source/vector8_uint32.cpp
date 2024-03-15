@@ -121,7 +121,7 @@ namespace qlm
 	v8uint32_t v8uint32_t::Greater(const v8uint32_t& in) const
 	{
 		v8uint32_t out;
-		out.vec_reg = _mm256_cmpgt_epi32(vec_reg, in.vec_reg);
+		out.vec_reg = _mm256_movm_epi32(_mm256_cmpgt_epu32_mask(vec_reg, in.vec_reg));
 		return out;
 	}
 

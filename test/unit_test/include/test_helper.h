@@ -31,8 +31,10 @@ namespace test
 	{
 		AVX_float,
 		AVX_double,
-		AVX2_int32,
-		AVX2_uint32
+		AVX_int32,
+		AVX_uint32,
+		AVX_int64,
+		AVX_uint64
 	};
 
 	template<typename T>
@@ -142,12 +144,20 @@ namespace test
 			out << "v4double_t";
 			break;
 
-		case vector_t::AVX2_int32:
+		case vector_t::AVX_int32:
 			out << "v8int32_t";
 			break;
 
-		case vector_t::AVX2_uint32:
+		case vector_t::AVX_uint32:
 			out << "v8uint32_t";
+			break;
+
+		case vector_t::AVX_int64:
+			out << "v4int64_t";
+			break;
+
+		case vector_t::AVX_uint64:
+			out << "v4uint64_t";
 			break;
 
 		}

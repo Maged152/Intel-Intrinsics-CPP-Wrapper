@@ -76,14 +76,14 @@ Broadcast signed integer (32-bit) value to all elements
 ```c++
 void Set(int32_t value);
 ```
-Instruction Set  : `AVX2`
+Instruction Set  : `AVX`
 
 ## Set Vector 
 Set packed signed integer (32-bit) elements with supplied values.
 ```c++
 void Set(int32_t e0, int32_t e1, int32_t e2, int32_t e3, int32_t e4, int32_t e5, int32_t e6, int32_t e7);
 ```
-Instruction Set  : `AVX2`
+Instruction Set  : `AVX`
 
 # Arithmetic Operations
 
@@ -122,7 +122,7 @@ returns a vector containing the result.
 ```c++
 v8int32_t Div(const v8int32_t& other) const
 ```
-Instruction Set  : `AVX2`
+Instruction Set  : `AVX`
 
 # Logical Operations
 ## Or
