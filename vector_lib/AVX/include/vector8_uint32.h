@@ -1,10 +1,10 @@
 #pragma once
 
-#include "../../common/vector_common.h"
+#include "vector256_int.h"
 
 namespace qlm
 {
-	class v8uint32_t : public Vector<uint32_t, v8uint32_t>
+	class v8uint32_t : public v256int_t<uint32_t, v8uint32_t>
 	{
 	public:
 		__m256i vec_reg;
@@ -22,12 +22,6 @@ namespace qlm
 		virtual v8uint32_t Sub(const v8uint32_t& in) const override;
 		v8uint32_t MulLo(const v8uint32_t& in) const;
 		virtual v8uint32_t Div(const v8uint32_t& in) const override;
-
-	public:
-		// Logical operators
-		virtual v8uint32_t Or(const v8uint32_t& in) const override;
-		virtual v8uint32_t And(const v8uint32_t& in) const override;
-		virtual v8uint32_t Xor(const v8uint32_t& in) const override;
 
 	public:
 		// Math functions

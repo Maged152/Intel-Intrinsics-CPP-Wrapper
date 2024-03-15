@@ -1,10 +1,10 @@
 #pragma once
 
-#include "vector_int.h"
+#include "vector256_int.h"
 
 namespace qlm
 {
-	class v4uint64_t : public vint_t<uint64_t, v4uint64_t>
+	class v4uint64_t : public v256int_t<uint64_t, v4uint64_t>
 	{
 	public:
 		__m256i vec_reg;

@@ -1,8 +1,8 @@
-# v4int64_t class
+# v4uint64_t class
 
 # Description
 
-The `v4int64_t` class represents a vector of 4 signed integer 
+The `v4uint64_t` class represents a vector of 4 unsigned integer 
 numbers (64-bit). 
 It provides methods for performing common vector operations 
 using corresponding Intel vector intrinsics instructions.
@@ -10,23 +10,23 @@ using corresponding Intel vector intrinsics instructions.
 # Constructors
 * default constructor (no initialization)
 ```c++
-v4int64_t()
+v4uint64_t()
 ```
 
 * Initialize vector register with single value to all elements.
 ```c++
-v4int64_t(int64_t value)
+v4uint64_t(uint64_t value)
 ```
 
 * Initialize vector register with supplied values.
 ```c++
-v4int64_t(int64_t e0, int64_t e1, int64_t e2, int64_t e3)
+v4uint64_t(uint64_t e0, uint64_t e1, uint64_t e2, uint64_t e3)
 ```
 
 
 * Initialize vector register with data loaded from memory.
 ```c++
-v4int64_t(const int64_t* mem_addr)
+v4uint64_t(const uint64_t* mem_addr)
 ```
 
 # Operator overloading
@@ -45,17 +45,17 @@ v4int64_t(const int64_t* mem_addr)
 # Memory Operations
 
 ## Linear load
-Load 256-bits (composed of 4 packed signed integer (64-bit) elements) from memory.
+Load 256-bits (composed of 4 packed unsigned integer (64-bit) elements) from memory.
 
 ```c++
-void Load(const int64_t* mem_addr)
+void Load(const uint64_t* mem_addr)
 ```
 Instruction Set  : `AVX512F` + `AVX512VL`
 
 ## Linear store
-Store 256-bits (composed of 4 packed signed integer (64-bit) elements) from into memory.
+Store 256-bits (composed of 4 packed unsigned integer (64-bit) elements) from into memory.
 ```c++
-void Store(int64_t* mem_addr) const
+void Store(uint64_t* mem_addr) const
 ```
 Instruction Set  : `AVX512F` + `AVX512VL`
 
@@ -68,21 +68,21 @@ mask[i] = num_elments > i ? true : false;
 ```
 
 ```c++
-static v4int64_t GetMask(const int64_t num_elements)
+static v4uint64_t GetMask(const uint64_t num_elements)
 ```
-Instruction Set  : `AVX2`
+Instruction Set  : (`AVX512F` + `AVX512VL`) & (`AVX512DQ` + `AVX512VL`)
 
 ## Set Single 
-Broadcast signed integer (64-bit) value to all elements 
+Broadcast unsigned integer (64-bit) value to all elements 
 ```c++
-void Set(int64_t value);
+void Set(uint64_t value);
 ```
 Instruction Set  : `AVX`
 
 ## Set Vector 
-Set packed signed integer (64-bit) elements with supplied values.
+Set packed unsigned integer (64-bit) elements with supplied values.
 ```c++
-void Set(int64_t e0, int64_t e1, int64_t e2, int64_t e3);
+void Set(uint64_t e0, uint64_t e1, uint64_t e2, uint64_t e3);
 ```
 Instruction Set  : `AVX`
 
@@ -93,7 +93,7 @@ Performs element-wise addition of `this` vector and the `other` vector, and
 returns a vector containing the result.
 
 ```c++
-v4int64_t Add(const v4int64_t& other) const
+v4uint64_t Add(const v4uint64_t& other) const
 ```
 Instruction Set  : `AVX2`
 
@@ -102,7 +102,7 @@ Performs element-wise subtraction of `this` vector and the `other` vector, and
 returns a vector containing the result.
 
 ```c++
-v4int64_t Sub(const v4int64_t& other) const
+v4uint64_t Sub(const v4uint64_t& other) const
 ```
 Instruction Set  : `AVX2`
 
@@ -112,7 +112,7 @@ producing intermediate 128-bit integers, and store the low 64 bits and
 returns a vector containing the result.
 
 ```c++
-v4int64_t MulLo(const v4int64_t& other) const
+v4uint64_t MulLo(const v4uint64_t& other) const
 ```
 Instruction Set  : `AVX512DQ` + `AVX512VL`
 
@@ -121,7 +121,7 @@ Performs element-wise division of `this` vector and the `other` vector, and
 returns a vector containing the result.
 
 ```c++
-v4int64_t Div(const v4int64_t& other) const
+v4uint64_t Div(const v4uint64_t& other) const
 ```
 Instruction Set  : `AVX`
 
@@ -131,7 +131,7 @@ Performs element-wise bitwise OR of `this` vector and the `other` vector, and
 returns a vector containing the result.
 
 ```c++
-v4int64_t Or(const v4int64_t& other) const
+v4uint64_t Or(const v4uint64_t& other) const
 ```
 Instruction Set  : `AVX2`
 
@@ -140,7 +140,7 @@ Performs element-wise  bitwise AND of `this` vector and the `other` vector, and
 returns a vector containing the result.
 
 ```c++
-v4int64_t And(const v4int64_t& other) const
+v4uint64_t And(const v4uint64_t& other) const
 ```
 Instruction Set  : `AVX2`
 
@@ -149,7 +149,7 @@ Performs element-wise  bitwise XOR of `this` vector and the `other` vector, and
 returns a vector containing the result.
 
 ```c++
-v4int64_t Xor(const v4int64_t& other) const
+v4uint64_t Xor(const v4uint64_t& other) const
 ```
 Instruction Set  : `AVX2`
 
@@ -160,15 +160,15 @@ compare element-wise between `this` vector and the `other` vector, and
 returns a vector containing the max elements.
 
 ```c++
-v4int64_t Max(const v4int64_t& other) const
+v4uint64_t Max(const v4uint64_t& other) const
 ```
-Instruction Set  : `AVX512F` + `AVX512VL`
+Instruction Set  : `AVX512F' + 'AVX512VL`
 
 ## Minimum 
 compare element-wise between `this` vector and the `other` vector, and 
 returns a vector containing the min elements.
 ```c++
-v4int64_t Min(const v4int64_t& other) const
+v4uint64_t Min(const v4uint64_t& other) const
 ```
 Instruction Set  : `AVX512F' + 'AVX512VL`
 
@@ -176,7 +176,7 @@ Instruction Set  : `AVX512F' + 'AVX512VL`
 Checks if `this` vector and the `other` vector are equals.
 
 ```c++
-v4int64_t Equal(const v4int64_t& in) const;
+v4uint64_t Equal(const v4uint64_t& in) const;
 ```
 Instruction Set  : `AVX2`
 
@@ -184,6 +184,6 @@ Instruction Set  : `AVX2`
 Checks if `this` vector is greater than `other` vector.
 
 ```c++
-v4int64_t Greater(const v4int64_t& in) const;
+v4uint64_t Greater(const v4uint64_t& in) const;
 ```
-Instruction Set  : `AVX2`
+Instruction Set  : (`AVX512F` + `AVX512VL`) & (`AVX512DQ` + `AVX512VL`)

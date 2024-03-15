@@ -84,6 +84,10 @@ TEST_P(AVXMax, Test_AVXMax)
     {
         DoTest<int64_t, qlm::v4int64_t>(min_val, max_val);
     }
+    else if (vec_t == test::vector_t::AVX_uint64)
+    {
+        DoTest<uint64_t, qlm::v4uint64_t>(min_val, max_val);
+    }
 }
 
 
@@ -94,5 +98,6 @@ INSTANTIATE_TEST_CASE_P(
         ::testing::Values(0.0, -100.0),
         ::testing::Values(1.0, 100.0),
         ::testing::Values(test::vector_t::AVX_float, test::vector_t::AVX_double,
-            test::vector_t::AVX_int32, test::vector_t::AVX_uint32)
+            test::vector_t::AVX_int32, test::vector_t::AVX_uint32,
+            test::vector_t::AVX_int64, test::vector_t::AVX_uint64)
     ));

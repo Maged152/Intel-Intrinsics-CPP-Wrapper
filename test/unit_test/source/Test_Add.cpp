@@ -98,5 +98,5 @@ INSTANTIATE_TEST_CASE_P(
         ::testing::Values(1.0, 100.0),
         ::testing::Values(test::vector_t::AVX_float, test::vector_t::AVX_double,
                           test::vector_t::AVX_int32, test::vector_t::AVX_uint32,
-                          test::vector_t::AVX_int64)
+                          test::vector_t::AVX_int64, test::vector_t::AVX_uint64)
     ));

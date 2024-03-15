@@ -5,7 +5,7 @@
 namespace qlm
 {
 	template<typename d_t, typename vec_t>
-	class vint_t : public Vector<d_t, vec_t>
+	class v256int_t : public Vector<d_t, vec_t>
 	{
 	public:
 		__m256i vec_reg;

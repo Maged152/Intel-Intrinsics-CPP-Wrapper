@@ -51,28 +51,6 @@ namespace qlm
 		return out;
 	}
 
-	/***********************Logical operations********************************/
-	v4int64_t v4int64_t::And(const v4int64_t& in) const
-	{
-		v4int64_t out;
-		out.vec_reg = _mm256_and_si256(vec_reg, in.vec_reg);
-		return out;
-	}
-
-	v4int64_t v4int64_t::Or(const v4int64_t& in) const
-	{
-		v4int64_t out;
-		out.vec_reg = _mm256_or_si256(vec_reg, in.vec_reg);
-		return out;
-	}
-
-	v4int64_t v4int64_t::Xor(const v4int64_t& in) const
-	{
-		v4int64_t out;
-		out.vec_reg = _mm256_xor_si256(vec_reg, in.vec_reg);
-		return out;
-	}
-
 	/*********************** Math functions********************************/
 	v4int64_t v4int64_t::Max(const v4int64_t& in) const
 	{

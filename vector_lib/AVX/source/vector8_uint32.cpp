@@ -51,28 +51,6 @@ namespace qlm
 		return out;
 	}
 
-	/***********************Logical operations********************************/
-	v8uint32_t v8uint32_t::And(const v8uint32_t& in) const
-	{
-		v8uint32_t out;
-		out.vec_reg = _mm256_and_si256(vec_reg, in.vec_reg);
-		return out;
-	}
-
-	v8uint32_t v8uint32_t::Or(const v8uint32_t& in) const
-	{
-		v8uint32_t out;
-		out.vec_reg = _mm256_or_si256(vec_reg, in.vec_reg);
-		return out;
-	}
-
-	v8uint32_t v8uint32_t::Xor(const v8uint32_t& in) const
-	{
-		v8uint32_t out;
-		out.vec_reg = _mm256_xor_si256(vec_reg, in.vec_reg);
-		return out;
-	}
-
 	/*********************** Math functions********************************/
 	v8uint32_t v8uint32_t::Max(const v8uint32_t& in) const
 	{
