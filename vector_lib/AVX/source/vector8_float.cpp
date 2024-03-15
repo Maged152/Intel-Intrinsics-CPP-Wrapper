@@ -1,5 +1,5 @@
 ﻿#include "vector8_float.h"
-#include "vector8_uint32.h"
+#include "vector8_int32.h"
 #include <cmath>
 
 namespace qlm
@@ -121,25 +121,15 @@ namespace qlm
 		_mm256_storeu_ps(mem_addr, vec_reg);
 	}
 
-	v8uint32_t v8float_t::GetMask(const uint32_t num_elements) const
-	{
-		v8uint32_t v_linear{ 0, 1, 2, 3, 4, 5, 6, 7 };
-		v8uint32_t v_num_elments{ num_elements };
-
-		v8uint32_t mask = v_num_elments.Greater(v_linear);
-
-		return mask;
-	}
-
 	void v8float_t::MaskLoad(const float* mem_addr, const uint32_t num_elements)
 	{
-		v8uint32_t mask = this->GetMask(num_elements);
+		v8int32_t mask = v8int32_t::GetMask(num_elements);
 		vec_reg = _mm256_maskload_ps(mem_addr, mask.vec_reg);
 	}
 
 	void v8float_t::MaskStore(float* mem_addr, const uint32_t num_elements) const
 	{
-		v8uint32_t mask = this->GetMask(num_elements);
+		v8int32_t mask = v8int32_t::GetMask(num_elements);
 		_mm256_maskstore_ps(mem_addr, mask.vec_reg, vec_reg);
 	}
 

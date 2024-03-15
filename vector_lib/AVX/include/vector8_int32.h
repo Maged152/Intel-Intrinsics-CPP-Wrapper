@@ -44,6 +44,8 @@ namespace qlm
 		virtual void Load(const int32_t* mem_addr) override;
 		virtual void Store(int32_t* mem_addr) const override;
 
+		static v8int32_t GetMask(const int32_t num_elements);
+
 	public:
 		// Compare
 		v8int32_t Equal(const v8int32_t& in) const;

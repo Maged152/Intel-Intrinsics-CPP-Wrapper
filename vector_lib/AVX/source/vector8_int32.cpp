@@ -99,6 +99,15 @@ namespace qlm
 		_mm256_storeu_epi32(mem_addr, vec_reg);
 	}
 
+	v8int32_t v8int32_t::GetMask(const int32_t num_elements)
+	{
+		v8int32_t v_linear{ 0, 1, 2, 3, 4, 5, 6, 7 };
+		v8int32_t v_num_elments{ num_elements };
+
+		v8int32_t mask = v_num_elments.Greater(v_linear);
+
+		return mask;
+	}
 
 	/*********************** Set ********************************/
 	void v8int32_t::Set(int32_t value)

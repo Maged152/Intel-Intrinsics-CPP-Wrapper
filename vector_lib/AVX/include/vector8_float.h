@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../../common/vector_common.h"
-#include "vector8_uint32.h"
 
 namespace qlm
 {
@@ -56,8 +55,6 @@ namespace qlm
 		void MaskLoad(const float* mem_addr, const uint32_t num_elements);
 		virtual void Store(float* mem_addr) const override;
 		void MaskStore(float* mem_addr, const uint32_t num_elements) const;
-
-		v8uint32_t GetMask(const uint32_t num_elements) const;
 
 	public:
 		// Compare
