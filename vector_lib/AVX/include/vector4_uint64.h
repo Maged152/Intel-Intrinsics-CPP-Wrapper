@@ -7,9 +7,6 @@ namespace qlm
 	class v4uint64_t : public v256int_t<uint64_t, v4uint64_t>
 	{
 	public:
-		__m256i vec_reg;
-
-	public:
 		// Constructors
 		v4uint64_t();
 		v4uint64_t(uint64_t value);

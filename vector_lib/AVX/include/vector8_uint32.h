@@ -7,9 +7,6 @@ namespace qlm
 	class v8uint32_t : public v256int_t<uint32_t, v8uint32_t>
 	{
 	public:
-		__m256i vec_reg;
-
-	public:
 		// Constructors
 		v8uint32_t();
 		v8uint32_t(uint32_t value);
