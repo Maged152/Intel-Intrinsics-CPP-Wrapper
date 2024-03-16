@@ -32,11 +32,11 @@ For example, `v8float_t` represents a vector of eight single-precision floating-
 
 ### Supported Data Types
 
-* **Float Vectors:**
-    * [`v8float_t`](doc/v8float_t.md)
-
 * **double Vectors:**
     * [`v4double_t`](doc/v4double_t.md)
+
+* **Float Vectors:**
+    * [`v8float_t`](doc/v8float_t.md)
 
 * **uint64 Vectors:**
     * [`v4uint64_t`](doc/v4uint64_t.md)
@@ -51,10 +51,16 @@ For example, `v8float_t` represents a vector of eight single-precision floating-
     * [`v8int32_t`](doc/v8int32_t.md)
 
 * **uint16 Vectors:**
-    * [`v16uint16_t`](doc/v168uint16_t.md)
+    * [`v16uint16_t`](doc/v16uint16_t.md)
 
 * **int16 Vectors:**
     * [`v16int16_t`](doc/v16int16_t.md)
+
+* **uint8 Vectors:**
+    * [`v32uint8_t`](doc/v32uint8_t.md)
+
+* **int8 Vectors:**
+    * [`v32int8_t`](doc/v32int8_t.md)
 
 
 
