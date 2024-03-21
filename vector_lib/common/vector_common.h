@@ -2,6 +2,7 @@
 
 #include <immintrin.h>
 #include "types.h"
+#include "mask.h"
 #include <iostream>
 
 namespace qlm
@@ -64,7 +65,7 @@ namespace qlm
 
 		vec_t operator /(const vec_t& in) const
 		{
-
+			return this->Div(in);
 		}
 
 	public:
