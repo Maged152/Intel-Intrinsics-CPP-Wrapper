@@ -139,7 +139,7 @@ namespace qlm
 		{
 			return std::nanf("0");
 		}
-#if defined(_WIN32)
+#if _MSC_VER && !__INTEL_COMPILER
 		return vec_reg.m256d_f64[index];
 #else
 		return vec_reg[index];

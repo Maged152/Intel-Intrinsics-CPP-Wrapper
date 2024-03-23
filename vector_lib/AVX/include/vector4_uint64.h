@@ -12,6 +12,7 @@ namespace qlm
 		v4uint64_t(uint64_t value);
 		v4uint64_t(uint64_t e0, uint64_t e1, uint64_t e2, uint64_t e3);
 		v4uint64_t(const uint64_t* mem_addr);
+		v4uint64_t(const Mask4 mask);
 
 	public:
 		// ALU operations
@@ -28,14 +29,14 @@ namespace qlm
 	public:
 		// Set 
 		void Set(uint64_t value);
+		void Set(const uint64_t value, const int index);
 		void Set(uint64_t e0, uint64_t e1, uint64_t e2, uint64_t e3);
+		void Set(const Mask4 mask);
 
 	public:
 		// Memory operations
 		virtual void Load(const uint64_t* mem_addr) override;
 		virtual void Store(uint64_t* mem_addr) const override;
-
-		static v4uint64_t GetMask(const uint64_t num_elements);
 
 	public:
 		// Compare

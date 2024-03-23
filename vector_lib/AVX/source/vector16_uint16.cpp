@@ -23,6 +23,11 @@ namespace qlm
 		this->Load(mem_addr);
 	}
 
+	v16uint16_t::v16uint16_t(const Mask16 mask)
+	{
+		this->Set(mask);
+	}
+
 	/***********************ALU operations********************************/
 	v16uint16_t v16uint16_t::Add(const v16uint16_t& in) const
 	{
@@ -78,25 +83,43 @@ namespace qlm
 		_mm256_storeu_epi16(mem_addr, vec_reg);
 	}
 
-	v16uint16_t v16uint16_t::GetMask(const uint16_t num_elements)
-	{
-		v16uint16_t v_linear{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
-		v16uint16_t v_num_elments{ num_elements };
-
-		v16uint16_t mask = v_num_elments.Greater(v_linear);
-
-		return mask;
-	}
-
 	/*********************** Set ********************************/
 	void v16uint16_t::Set(uint16_t value)
 	{
 		vec_reg = _mm256_set1_epi16(value);
 	}
+
+	void v16uint16_t::Set(const uint16_t value, const int index)
+	{
+#if _MSC_VER && !__INTEL_COMPILER
+		vec_reg.m256i_i32[index] = value;
+#else
+		vec_reg[index] = value;
+#endif
+	}
+
 	void v16uint16_t::Set(uint16_t e0, uint16_t e1, uint16_t e2, uint16_t e3, uint16_t e4, uint16_t e5, uint16_t e6, uint16_t e7,
 		uint16_t e8, uint16_t e9, uint16_t e10, uint16_t e11, uint16_t e12, uint16_t e13, uint16_t e14, uint16_t e15)
 	{
 		vec_reg = _mm256_setr_epi16(e0, e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15);
+	}
+
+	void v16uint16_t::Set(const Mask16 mask)
+	{
+		constexpr uint16_t max_val = std::numeric_limits<uint16_t>::max();
+		constexpr uint16_t min_val = std::numeric_limits<uint16_t>::min();
+
+		for (int i = 0; i < mask.Size(); i++)
+		{
+			if (mask[i])
+			{
+				Set(max_val, i);
+			}
+			else
+			{
+				Set(min_val, i);
+			}
+		}
 	}
 
 	/*********************** Compare ********************************/
@@ -122,7 +145,7 @@ namespace qlm
 		{
 			return std::nanf("0");
 		}
-#if defined(_WIN32)
+#if _MSC_VER && !__INTEL_COMPILER
 		return vec_reg.m256i_i32[index];
 #else
 		return vec_reg[index];

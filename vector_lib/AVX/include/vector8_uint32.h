@@ -12,6 +12,7 @@ namespace qlm
 		v8uint32_t(uint32_t value);
 		v8uint32_t(uint32_t e0, uint32_t e1, uint32_t e2, uint32_t e3, uint32_t e4, uint32_t e5, uint32_t e6, uint32_t e7);
 		v8uint32_t(const uint32_t* mem_addr);
+		v8uint32_t(const Mask8 mask);
 
 	public:
 		// ALU operations
@@ -28,7 +29,9 @@ namespace qlm
 	public:
 		// Set 
 		void Set(uint32_t value);
+		void Set(const uint32_t value, const int index);
 		void Set(uint32_t e0, uint32_t e1, uint32_t e2, uint32_t e3, uint32_t e4, uint32_t e5, uint32_t e6, uint32_t e7);
+		void Set(const Mask8 mask);
 
 	public:
 		// Memory operations

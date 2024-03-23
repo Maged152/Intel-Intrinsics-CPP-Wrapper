@@ -22,6 +22,11 @@ namespace qlm
 		this->Load(mem_addr);
 	}
 
+	v4uint64_t::v4uint64_t(const Mask4 mask)
+	{
+		this->Set(mask);
+	}
+
 	/***********************ALU operations********************************/
 	v4uint64_t v4uint64_t::Add(const v4uint64_t& in) const
 	{
@@ -77,24 +82,42 @@ namespace qlm
 		_mm256_storeu_epi64(mem_addr, vec_reg);
 	}
 
-	v4uint64_t v4uint64_t::GetMask(const uint64_t num_elements)
-	{
-		v4uint64_t v_linear{ 0, 1, 2, 3 };
-		v4uint64_t v_num_elments{ num_elements };
-
-		v4uint64_t mask = v_num_elments.Greater(v_linear);
-
-		return mask;
-	}
-
 	/*********************** Set ********************************/
 	void v4uint64_t::Set(uint64_t value)
 	{
 		vec_reg = _mm256_set1_epi64x(value);
 	}
+
+	void v4uint64_t::Set(const uint64_t value, const int index)
+	{
+#if _MSC_VER && !__INTEL_COMPILER
+		vec_reg.m256i_i64[index] = value;
+#else
+		vec_reg[index] = value;
+#endif
+	}
+
 	void v4uint64_t::Set(uint64_t e0, uint64_t e1, uint64_t e2, uint64_t e3)
 	{
 		vec_reg = _mm256_setr_epi64x(e0, e1, e2, e3);
+	}
+
+	void v4uint64_t::Set(const Mask4 mask)
+	{
+		constexpr uint64_t max_val = std::numeric_limits<uint64_t>::max();
+		constexpr uint64_t min_val = std::numeric_limits<uint64_t>::min();
+
+		for (int i = 0; i < mask.Size(); i++)
+		{
+			if (mask[i])
+			{
+				Set(max_val, i);
+			}
+			else
+			{
+				Set(min_val, i);
+			}
+		}
 	}
 
 	/*********************** Compare ********************************/
@@ -120,7 +143,7 @@ namespace qlm
 		{
 			return std::nanf("0");
 		}
-#if defined(_WIN32)
+#if _MSC_VER && !__INTEL_COMPILER
 		return vec_reg.m256i_i64[index];
 #else
 		return vec_reg[index];

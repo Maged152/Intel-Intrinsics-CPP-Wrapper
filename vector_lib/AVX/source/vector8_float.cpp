@@ -1,5 +1,4 @@
 ﻿#include "vector8_float.h"
-#include "vector8_int32.h"
 #include <cmath>
 
 namespace qlm
@@ -121,16 +120,17 @@ namespace qlm
 		_mm256_storeu_ps(mem_addr, vec_reg);
 	}
 
-	void v8float_t::MaskLoad(const float* mem_addr, const uint32_t num_elements)
+	void v8float_t::Load(const float* mem_addr, const Mask8 mask)
 	{
-		v8int32_t mask = v8int32_t::GetMask(num_elements);
-		vec_reg = _mm256_maskload_ps(mem_addr, mask.vec_reg);
+		/*v8int32_t v_mask;
+		= v8int32_t::GetMask(num_elements);
+		vec_reg = _mm256_maskload_ps(mem_addr, mask.vec_reg);*/
 	}
 
-	void v8float_t::MaskStore(float* mem_addr, const uint32_t num_elements) const
+	void v8float_t::Store(float* mem_addr, const Mask8 mask) const
 	{
-		v8int32_t mask = v8int32_t::GetMask(num_elements);
-		_mm256_maskstore_ps(mem_addr, mask.vec_reg, vec_reg);
+		/*v8int32_t mask = v8int32_t::GetMask(num_elements);
+		_mm256_maskstore_ps(mem_addr, mask.vec_reg, vec_reg);*/
 	}
 
 	/*********************** Set ********************************/
@@ -151,7 +151,7 @@ namespace qlm
 		{
 			return std::nanf("0");
 		}
-#if defined(_WIN32)
+#if _MSC_VER && !__INTEL_COMPILER
 		return vec_reg.m256_f32[index];
 #else
 		return vec_reg[index];

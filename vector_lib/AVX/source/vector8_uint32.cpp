@@ -22,6 +22,11 @@ namespace qlm
 		this->Load(mem_addr);
 	}
 
+	v8uint32_t::v8uint32_t(const Mask8 mask)
+	{
+		this->Set(mask);
+	}
+
 	/***********************ALU operations********************************/
 	v8uint32_t v8uint32_t::Add(const v8uint32_t& in) const
 	{
@@ -83,9 +88,37 @@ namespace qlm
 	{
 		vec_reg = _mm256_set1_epi32(value);
 	}
+
+	void v8uint32_t::Set(const uint32_t value, const int index)
+	{
+#if _MSC_VER && !__INTEL_COMPILER
+		vec_reg.m256i_u32[index] = value;
+#else
+		vec_reg[index] = value;
+#endif
+	}
+
 	void v8uint32_t::Set(uint32_t e0, uint32_t e1, uint32_t e2, uint32_t e3, uint32_t e4, uint32_t e5, uint32_t e6, uint32_t e7)
 	{
 		vec_reg = _mm256_setr_epi32(e0, e1, e2, e3, e4, e5, e6, e7);
+	}
+
+	void v8uint32_t::Set(const Mask8 mask)
+	{
+		constexpr uint32_t max_val = std::numeric_limits<uint32_t>::max();
+		constexpr uint32_t min_val = std::numeric_limits<uint32_t>::min();
+
+		for (int i = 0; i < mask.Size(); i++)
+		{
+			if (mask[i])
+			{
+				Set(max_val, i);
+			}
+			else
+			{
+				Set(min_val, i);
+			}
+		}
 	}
 
 	/*********************** Compare ********************************/
@@ -112,7 +145,7 @@ namespace qlm
 		{
 			return std::nanf("0");
 		}
-#if defined(_WIN32)
+#if _MSC_VER && !__INTEL_COMPILER
 		return vec_reg.m256i_u32[index];
 #else
 		return vec_reg[index];

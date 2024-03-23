@@ -1,5 +1,6 @@
 #include "vector32_uint8.h"
 #include <cmath>
+#include <limits>
 
 namespace qlm
 {
@@ -24,6 +25,11 @@ namespace qlm
 	v32uint8_t::v32uint8_t(const uint8_t* mem_addr)
 	{
 		this->Load(mem_addr);
+	}
+
+	v32uint8_t::v32uint8_t(const Mask32 mask)
+	{
+		this->Set(mask);
 	}
 
 	/***********************ALU operations********************************/
@@ -75,10 +81,20 @@ namespace qlm
 	}
 
 	/*********************** Set ********************************/
-	void v32uint8_t::Set(uint8_t value)
+	void v32uint8_t::Set(const uint8_t value)
 	{
 		vec_reg = _mm256_set1_epi8(value);
 	}
+
+	void v32uint8_t::Set(const uint8_t value, const int index)
+	{
+#if _MSC_VER && !__INTEL_COMPILER
+		vec_reg.m256i_i32[index] = value;
+#else
+		vec_reg[index] = value;
+#endif
+	}
+
 	void v32uint8_t::Set(uint8_t e0, uint8_t e1, uint8_t e2, uint8_t e3, uint8_t e4, uint8_t e5, uint8_t e6, uint8_t e7,
 		uint8_t e8, uint8_t e9, uint8_t e10, uint8_t e11, uint8_t e12, uint8_t e13, uint8_t e14, uint8_t e15,
 		uint8_t e16, uint8_t e17, uint8_t e18, uint8_t e19, uint8_t e20, uint8_t e21, uint8_t e22, uint8_t e23,
@@ -86,6 +102,24 @@ namespace qlm
 	{
 		vec_reg = _mm256_setr_epi8(e0, e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15,
 			e16, e17, e18, e19, e20, e21, e22, e23, e24, e25, e26, e27, e28, e29, e30, e31);
+	}
+
+	void v32uint8_t::Set(const Mask32 mask)
+	{
+		constexpr uint8_t max_val = std::numeric_limits<uint8_t>::max();
+		constexpr uint8_t min_val = std::numeric_limits<uint8_t>::min();
+
+		for (int i = 0; i < mask.Size(); i++)
+		{
+			if (mask[i])
+			{
+				Set(max_val, i);
+			}
+			else
+			{
+				Set(min_val, i);
+			}
+		}
 	}
 
 	/*********************** Compare ********************************/
@@ -111,7 +145,7 @@ namespace qlm
 		{
 			return std::nanf("0");
 		}
-#if defined(_WIN32)
+#if _MSC_VER && !__INTEL_COMPILER
 		return vec_reg.m256i_i32[index];
 #else
 		return vec_reg[index];

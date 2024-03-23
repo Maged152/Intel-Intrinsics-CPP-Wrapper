@@ -2,7 +2,6 @@
 
 #include <cstdint>
 
-
 namespace qlm
 {
 	// base mask class
@@ -81,7 +80,7 @@ namespace qlm
 
 	
 	// derived mask classes
-		class Mask4 : public Mask<uint8_t> 
+	class Mask4 : public Mask<uint8_t> 
 		{
 		public:
 			Mask4() : Mask<uint8_t>()
@@ -95,6 +94,16 @@ namespace qlm
 				return 4;  // Override the base class Size() to return 4
 			}
 
+	};
+
+	class Mask8 : public Mask<uint8_t>
+	{
+	public:
+		Mask8()
+		{}
+
+		Mask8(const uint8_t mask) : Mask(mask)
+		{}
 	};
 
 	class Mask16 : public Mask<uint16_t>

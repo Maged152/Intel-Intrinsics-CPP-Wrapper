@@ -13,6 +13,7 @@ namespace qlm
 		v16uint16_t(uint16_t e0, uint16_t e1, uint16_t e2, uint16_t e3, uint16_t e4, uint16_t e5, uint16_t e6, uint16_t e7,
 			        uint16_t e8, uint16_t e9, uint16_t e10, uint16_t e11, uint16_t e12, uint16_t e13, uint16_t e14, uint16_t e15);
 		v16uint16_t(const uint16_t* mem_addr);
+		v16uint16_t(const Mask16 mask);
 
 	public:
 		// ALU operations
@@ -29,15 +30,15 @@ namespace qlm
 	public:
 		// Set 
 		void Set(uint16_t value);
+		void Set(const uint16_t value, const int index);
 		void Set(uint16_t e0, uint16_t e1, uint16_t e2, uint16_t e3, uint16_t e4, uint16_t e5, uint16_t e6, uint16_t e7,
 			     uint16_t e8, uint16_t e9, uint16_t e10, uint16_t e11, uint16_t e12, uint16_t e13, uint16_t e14, uint16_t e15);
-
+		void Set(const Mask16 mask);
+	
 	public:
 		// Memory operations
 		virtual void Load(const uint16_t* mem_addr) override;
 		virtual void Store(uint16_t* mem_addr) const override;
-
-		static v16uint16_t GetMask(const uint16_t num_elements);
 
 	public:
 		// Compare
