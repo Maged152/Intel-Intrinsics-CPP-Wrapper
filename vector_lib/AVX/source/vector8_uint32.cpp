@@ -112,11 +112,11 @@ namespace qlm
 		{
 			if (mask[i])
 			{
-				Set(max_val, i);
+				Set(max_val, mask.Size() - i - 1);
 			}
 			else
 			{
-				Set(min_val, i);
+				Set(min_val, mask.Size() - i - 1);
 			}
 		}
 	}

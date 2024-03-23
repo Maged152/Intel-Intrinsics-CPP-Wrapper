@@ -1,4 +1,5 @@
 ﻿#include "vector8_float.h"
+#include "vector8_uint32.h"
 #include <cmath>
 
 namespace qlm
@@ -122,15 +123,14 @@ namespace qlm
 
 	void v8float_t::Load(const float* mem_addr, const Mask8 mask)
 	{
-		/*v8int32_t v_mask;
-		= v8int32_t::GetMask(num_elements);
-		vec_reg = _mm256_maskload_ps(mem_addr, mask.vec_reg);*/
+		const v8uint32_t v_mask {mask};
+		vec_reg = _mm256_maskload_ps(mem_addr, v_mask.vec_reg);
 	}
 
 	void v8float_t::Store(float* mem_addr, const Mask8 mask) const
 	{
-		/*v8int32_t mask = v8int32_t::GetMask(num_elements);
-		_mm256_maskstore_ps(mem_addr, mask.vec_reg, vec_reg);*/
+		const v8uint32_t v_mask{ mask };
+		_mm256_maskstore_ps(mem_addr, v_mask.vec_reg, vec_reg);
 	}
 
 	/*********************** Set ********************************/
