@@ -1,4 +1,5 @@
 #include "vector4_int64.h"
+#include "vector4_uint64.h"
 #include <cmath>
 
 namespace qlm
@@ -72,19 +73,22 @@ namespace qlm
 		vec_reg = _mm256_loadu_epi64(mem_addr);
 	}
 
+	void v4int64_t::Load(const int64_t* mem_addr, const Mask4 mask)
+	{
+		const v4uint64_t v_mask{ mask };
+		vec_reg = _mm256_maskload_epi64(mem_addr, v_mask.vec_reg);
+	}
+
 	void v4int64_t::Store(int64_t* mem_addr) const
 	{
+
 		_mm256_storeu_epi64(mem_addr, vec_reg);
 	}
 
-	v4int64_t v4int64_t::GetMask(const int64_t num_elements)
+	void v4int64_t::Store(int64_t* mem_addr, const Mask4 mask) const
 	{
-		v4int64_t v_linear{ 0, 1, 2, 3 };
-		v4int64_t v_num_elments{ num_elements };
-
-		v4int64_t mask = v_num_elments.Greater(v_linear);
-
-		return mask;
+		const v4uint64_t v_mask{ mask };
+		_mm256_maskstore_epi64(mem_addr, v_mask.vec_reg, vec_reg);
 	}
 
 	/*********************** Set ********************************/
