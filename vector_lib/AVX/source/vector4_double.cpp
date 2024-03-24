@@ -1,4 +1,5 @@
 #include "vector4_double.h"
+#include "vector4_uint64.h"
 #include <cmath>
 
 namespace qlm
@@ -115,9 +116,20 @@ namespace qlm
 		vec_reg = _mm256_loadu_pd(mem_addr);
 	}
 
+	void v4double_t::Load(const double* mem_addr, const Mask4 mask)
+	{
+		const v4uint64_t v_mask{ mask };
+		vec_reg = _mm256_maskload_pd(mem_addr, v_mask.vec_reg);
+	}
 	void v4double_t::Store(double* mem_addr) const
 	{
 		_mm256_storeu_pd(mem_addr, vec_reg);
+	}
+
+	void v4double_t::Store(double* mem_addr, const Mask4 mask) const
+	{
+		const v4uint64_t v_mask{ mask };
+		_mm256_maskstore_pd(mem_addr, v_mask.vec_reg, vec_reg);
 	}
 
 
