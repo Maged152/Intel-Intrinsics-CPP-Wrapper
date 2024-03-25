@@ -6,4 +6,4 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_subdirectory (AVX)
 
-install(DIRECTORY common DESTINATION ${CMAKE_SOURCE_DIR}/package)
+install(DIRECTORY common DESTINATION ${CMAKE_SOURCE_DIR}/shakhbat_vectorization)
