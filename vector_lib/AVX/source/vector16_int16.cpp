@@ -1,4 +1,5 @@
 #include "vector16_int16.h"
+#include "vector16_uint16.h"
 #include <cmath>
 
 namespace qlm
@@ -73,19 +74,20 @@ namespace qlm
 		vec_reg = _mm256_loadu_epi16(mem_addr);
 	}
 
+	void v16int16_t::Load(const int16_t* mem_addr, const Mask16 mask)
+	{
+		v16uint16_t src{ (uint16_t)0 };
+		vec_reg = _mm256_mask_loadu_epi16(src.vec_reg, mask.mask, mem_addr);
+	}
+
 	void v16int16_t::Store(int16_t* mem_addr) const
 	{
 		_mm256_storeu_epi16(mem_addr, vec_reg);
 	}
 
-	v16int16_t v16int16_t::GetMask(const int16_t num_elements)
+	void v16int16_t::Store(int16_t* mem_addr, const Mask16 mask) const
 	{
-		v16int16_t v_linear{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
-		v16int16_t v_num_elments{ num_elements };
-
-		v16int16_t mask = v_num_elments.Greater(v_linear);
-
-		return mask;
+		_mm256_mask_storeu_epi16(mem_addr, mask.mask, vec_reg);
 	}
 
 	/*********************** Set ********************************/

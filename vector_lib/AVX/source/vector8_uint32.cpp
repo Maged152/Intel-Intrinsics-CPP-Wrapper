@@ -77,11 +77,22 @@ namespace qlm
 		vec_reg = _mm256_loadu_epi32(mem_addr);
 	}
 
+	void v8uint32_t::Load(const uint32_t* mem_addr, const Mask8 mask)
+	{
+		const v8uint32_t v_mask{ mask };
+		vec_reg = _mm256_maskload_epi32((int32_t*)mem_addr, v_mask.vec_reg);
+	}
+
 	void v8uint32_t::Store(uint32_t* mem_addr) const
 	{
 		_mm256_storeu_epi32(mem_addr, vec_reg);
 	}
 
+	void v8uint32_t::Store(uint32_t* mem_addr, const Mask8 mask) const
+	{
+		const v8uint32_t v_mask{ mask };
+		_mm256_maskstore_epi32((int32_t*)mem_addr, v_mask.vec_reg, vec_reg);
+	}
 
 	/*********************** Set ********************************/
 	void v8uint32_t::Set(uint32_t value)

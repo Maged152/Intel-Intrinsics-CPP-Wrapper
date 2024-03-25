@@ -1,4 +1,5 @@
 #include "vector8_int32.h"
+#include "vector8_uint32.h"
 #include <cmath>
 
 namespace qlm
@@ -72,19 +73,21 @@ namespace qlm
 		vec_reg = _mm256_loadu_epi32(mem_addr);
 	}
 
+	void v8int32_t::Load(const int32_t* mem_addr, const Mask8 mask)
+	{
+		const v8uint32_t v_mask{ mask };
+		vec_reg = _mm256_maskload_epi32(mem_addr, v_mask.vec_reg);
+	}
+
 	void v8int32_t::Store(int32_t* mem_addr) const
 	{
 		_mm256_storeu_epi32(mem_addr, vec_reg);
 	}
 
-	v8int32_t v8int32_t::GetMask(const int32_t num_elements)
+	void v8int32_t::Store(int32_t* mem_addr, const Mask8 mask) const
 	{
-		v8int32_t v_linear{ 0, 1, 2, 3, 4, 5, 6, 7 };
-		v8int32_t v_num_elments{ num_elements };
-
-		v8int32_t mask = v_num_elments.Greater(v_linear);
-
-		return mask;
+		const v8uint32_t v_mask{ mask };
+		_mm256_maskstore_epi32(mem_addr, v_mask.vec_reg, vec_reg);
 	}
 
 	/*********************** Set ********************************/
