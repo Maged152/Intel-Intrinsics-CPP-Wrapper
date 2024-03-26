@@ -52,6 +52,15 @@ void Load(const uint64_t* mem_addr)
 ```
 Instruction Set  : `AVX512F` + `AVX512VL`
 
+## Linear load with mask
+Load 256-bits (composed of 4 packed unsigned integer (64-bit) elements) 
+from memory using mask(elements are zeroed out a bit of the corresponding element is not set).
+
+```c++
+void Load(const uint64_t* mem_addr, const Mask4 mask)
+```
+Instruction Set  : `AVX2`
+
 ## Linear store
 Store 256-bits (composed of 4 packed unsigned integer (64-bit) elements) from into memory.
 ```c++
@@ -59,18 +68,13 @@ void Store(uint64_t* mem_addr) const
 ```
 Instruction Set  : `AVX512F` + `AVX512VL`
 
-
-## Get Mask
-Create a mask for 4 elements, consists of non-zero and
-zero depending on input.
+## Linear store with mask
+Store 256-bits (composed of 4 packed unsigned integer (64-bit) elements) from into 
+memory using mask(elements are zeroed out a bit of the corresponding element is not set).
 ```c++
-mask[i] = num_elments > i ? true : false;
+void Store(uint64_t* mem_addr, const Mask4 mask) const
 ```
-
-```c++
-static v4uint64_t GetMask(const uint64_t num_elements)
-```
-Instruction Set  : (`AVX512F` + `AVX512VL`) & (`AVX512DQ` + `AVX512VL`)
+Instruction Set  : `AVX2`
 
 ## Set Single 
 Broadcast unsigned integer (64-bit) value to all elements 

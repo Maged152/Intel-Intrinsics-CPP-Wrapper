@@ -2,8 +2,8 @@
 
 # Description
 
-The `v32int8_t` class represents a vector of 16 signed integer 
-numbers (**16-bit**). 
+The `v32int8_t` class represents a vector of 32 signed integer 
+numbers (**8-bit**). 
 It provides methods for performing common vector operations 
 using corresponding Intel vector intrinsics instructions.
 
@@ -15,19 +15,21 @@ v32int8_t()
 
 * Initialize vector register with single value to all elements.
 ```c++
-v32int8_t(int16_t value)
+v32int8_t(int8_t value)
 ```
 
 * Initialize vector register with supplied values.
 ```c++
-v32int8_t(int16_t e0, int16_t e1, int16_t e2, int16_t e3, int16_t e4, int16_t e5, int16_t e6, int16_t e7,
-           int16_t e8, int16_t e9, int16_t e10, int16_t e11, int16_t e12, int16_t e13, int16_t e14, int16_t e15)
+v32int8_t(int8_t e0, int8_t e1, int8_t e2, int8_t e3, int8_t e4, int8_t e5, int8_t e6, int8_t e7,
+        int8_t e8, int8_t e9, int8_t e10, int8_t e11, int8_t e12, int8_t e13, int8_t e14, int8_t e15, 
+        int8_t e16, int8_t e17, int8_t e18, int8_t e19, int8_t e20, int8_t e21, int8_t e22, int8_t e23,
+        int8_t e24, int8_t e25, int8_t e26, int8_t e27, int8_t e28, int8_t e29, int8_t e30, int8_t e31)
 ```
 
 
 * Initialize vector register with data loaded from memory.
 ```c++
-v32int8_t(const int16_t* mem_addr)
+v32int8_t(const int8_t* mem_addr)
 ```
 
 # Operator overloading
@@ -46,33 +48,51 @@ v32int8_t(const int16_t* mem_addr)
 # Memory Operations
 
 ## Linear load
-Load 256-bits (composed of 16 packed signed integer (16-bit) elements) from memory.
+Load 256-bits (composed of 32 packed signed integer (8-bit) elements) from memory.
 
 ```c++
-void Load(const int16_t* mem_addr)
+void Load(const int8_t* mem_addr)
+```
+Instruction Set  : `AVX512BW` + `AVX512VL`
+
+## Linear load with mask
+Load 256-bits (composed of 32 packed signed integer (8-bit) elements) from memory.
+using mask(elements are zeroed out a bit of the corresponding element is not set).
+```c++
+void Load(const int8_t* mem_addr, const Mask32 mask)
 ```
 Instruction Set  : `AVX512BW` + `AVX512VL`
 
 ## Linear store
-Store 256-bits (composed of 16 packed signed integer (16-bit) elements) from into memory.
+Store 256-bits (composed of 32 packed signed integer (8-bit) elements) from memory.
 ```c++
-void Store(int16_t* mem_addr) const
+void Store(int8_t* mem_addr) const
+```
+Instruction Set  : `AVX512BW` + `AVX512VL`
+
+## Linear store with mask
+Store 256-bits (composed of 32 packed signed integer (8-bit) elements) from memory.
+using mask(elements are zeroed out a bit of the corresponding element is not set).
+```c++
+void Store(int8_t* mem_addr, const Mask32 mask) const
 ```
 Instruction Set  : `AVX512BW` + `AVX512VL`
 
 
 ## Set Single 
-Broadcast signed integer (16-bit) value to all elements 
+Broadcast signed integer (8-bit) value to all elements 
 ```c++
-void Set(int16_t value);
+void Set(int8_t value);
 ```
 Instruction Set  : `AVX`
 
 ## Set Vector 
-Set packed signed integer (16-bit) elements with supplied values.
+Set packed signed integer (8-bit) elements with supplied values.
 ```c++
-void Set(int16_t e0, int16_t e1, int16_t e2, int16_t e3, int16_t e4, int16_t e5, int16_t e6, int16_t e7,
-         int16_t e8, int16_t e9, int16_t e10, int16_t e11, int16_t e12, int16_t e13, int16_t e14, int16_t e15);
+void Set(int8_t e0, int8_t e1, int8_t e2, int8_t e3, int8_t e4, int8_t e5, int8_t e6, int8_t e7,
+        int8_t e8, int8_t e9, int8_t e10, int8_t e11, int8_t e12, int8_t e13, int8_t e14, int8_t e15,
+        int8_t e16, int8_t e17, int8_t e18, int8_t e19, int8_t e20, int8_t e21, int8_t e22, int8_t e23,
+        int8_t e24, int8_t e25, int8_t e26, int8_t e27, int8_t e28, int8_t e29, int8_t e30, int8_t e31)
 ```
 Instruction Set  : `AVX`
 

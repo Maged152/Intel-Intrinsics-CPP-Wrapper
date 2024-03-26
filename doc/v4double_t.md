@@ -53,11 +53,30 @@ void Load(const double* mem_addr)
 ```
 Instruction Set  : `AVX`
 
+## Linear load with mask
+Load 256-bits (composed of 4 packed double-precision (64-bit) 
+floating-point elements) from memory using mask(elements are zeroed out 
+a bit of the corresponding element is not set).
+
+```c++
+void Load(const double* mem_addr, const Mask4 mask)
+```
+Instruction Set  : `AVX`
+
 ## Linear store
 Store 256-bits (composed of 4 packed double-precision (64-bit) 
 floating-point elements) from into memory.
 ```c++
 void Store(double* mem_addr) const
+```
+Instruction Set  : `AVX`
+
+## Linear store with mask
+Store 256-bits (composed of 4 packed double-precision (64-bit) 
+floating-point elements) from into memory using mask(elements are zeroed out 
+a bit of the corresponding element is not set).
+```c++
+Store(double* mem_addr, const Mask4 mask) const
 ```
 Instruction Set  : `AVX`
 

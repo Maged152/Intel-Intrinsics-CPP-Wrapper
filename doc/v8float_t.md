@@ -52,31 +52,30 @@ void Load(const float* mem_addr)
 ```
 Instruction Set  : `AVX`
 
+## Linear load with mask
+Load 256-bits (composed of 8 packed single-precision (32-bit) floating-point elements) 
+from memory using mask(elements are zeroed out a bit of the corresponding element is not set).
+
+```c++
+void Load(const float* mem_addr, const Mask8 mask)
+```
+Instruction Set  : `AVX`
+
 ## Linear store
-Store 256-bits (composed of 8 packed single-precision (32-bit) floating-point elements) from into memory.
+Store 256-bits (composed of 8 packed single-precision (32-bit) floating-point elements) into memory.
 ```c++
 void Store(float* mem_addr) const
 ```
 Instruction Set  : `AVX`
 
-## Mask load
-Load 256-bits (composed of 8 packed single-precision (32-bit) floating-point
-elements) from memory using mask to selectively include or exclude elements based
-on the mask values, the excluded elements are set to zero.
-
+## Linear store with mask
+Store 256-bits (composed of 8 packed single-precision (32-bit) floating-point elements)
+into memory using mask(elements are zeroed out a bit of the corresponding element is not set).
 ```c++
-void MaskLoad(const float* mem_addr, const uint32_t num_elements)
+void Store(float* mem_addr, const Mask8 mask) const
 ```
-Instruction Set  : `AVX` & `AVX2`
+Instruction Set  : `AVX`
 
-## Mask store
-Store 256-bits (composed of 8 packed single-precision (32-bit) floating-point
-elements) from into memory using mask to selectively include or exclude elements based
-on the mask values, the excluded elements are not stored in memory.
-```c++
-void MaskStore(float* mem_addr, const uint32_t num_elements) const
-```
-Instruction Set  : `AVX` & `AVX2`
 
 ## Set Single 
 Broadcast single-precision (32-bit) floating-point value to all elements 
