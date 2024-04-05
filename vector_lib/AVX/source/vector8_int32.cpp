@@ -68,23 +68,13 @@ namespace qlm
 	}
 
 	/***********************Memory operations********************************/
-	void v8int32_t::Load(const int32_t* mem_addr)
-	{
-		vec_reg = _mm256_loadu_epi32(mem_addr);
-	}
-
-	void v8int32_t::Load(const int32_t* mem_addr, const Mask8 mask)
+	void v8int32_t::MaskLoad(const int32_t* mem_addr, const Mask8 mask)
 	{
 		const v8uint32_t v_mask{ mask };
 		vec_reg = _mm256_maskload_epi32(mem_addr, v_mask.vec_reg);
 	}
 
-	void v8int32_t::Store(int32_t* mem_addr) const
-	{
-		_mm256_storeu_epi32(mem_addr, vec_reg);
-	}
-
-	void v8int32_t::Store(int32_t* mem_addr, const Mask8 mask) const
+	void v8int32_t::MaskStore(int32_t* mem_addr, const Mask8 mask) const
 	{
 		const v8uint32_t v_mask{ mask };
 		_mm256_maskstore_epi32(mem_addr, v_mask.vec_reg, vec_reg);

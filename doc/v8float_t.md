@@ -57,7 +57,7 @@ Load 256-bits (composed of 8 packed single-precision (32-bit) floating-point ele
 from memory using mask(elements are zeroed out a bit of the corresponding element is not set).
 
 ```c++
-void Load(const float* mem_addr, const Mask8 mask)
+void MaskLoad(const float* mem_addr, const Mask8 mask)
 ```
 Instruction Set  : `AVX`
 
@@ -72,7 +72,7 @@ Instruction Set  : `AVX`
 Store 256-bits (composed of 8 packed single-precision (32-bit) floating-point elements)
 into memory using mask(elements are zeroed out a bit of the corresponding element is not set).
 ```c++
-void Store(float* mem_addr, const Mask8 mask) const
+void MaskStore(float* mem_addr, const Mask8 mask) const
 ```
 Instruction Set  : `AVX`
 

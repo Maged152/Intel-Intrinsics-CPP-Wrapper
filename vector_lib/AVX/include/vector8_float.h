@@ -51,11 +51,11 @@ namespace qlm
 
 	public:
 		// Memory operations
-		virtual void Load(const float* mem_addr) override;
-		void Load(const float* mem_addr, const Mask8 mask);
+		void Load(const float* mem_addr);
+		void MaskLoad(const float* mem_addr, const Mask8 mask);
 
-		virtual void Store(float* mem_addr) const override;
-		void Store(float* mem_addr, const Mask8 mask) const;
+		void Store(float* mem_addr) const;
+		void MaskStore(float* mem_addr, const Mask8 mask) const;
 
 	public:
 		// Compare

@@ -51,13 +51,13 @@ Load 256-bits (composed of 16 packed unsigned integer (16-bit) elements) from me
 ```c++
 void Load(const uint16_t* mem_addr)
 ```
-Instruction Set  : `AVX512BW` + `AVX512VL`
+Instruction Set  : `AVX`
 
 ## Linear load with mask
 Load 256-bits (composed of 16 packed unsigned integer (16-bit) elements) from memory.
 using mask(elements are zeroed out a bit of the corresponding element is not set).
 ```c++
-void Load(const uint16_t* mem_addr, const Mask16 mask)
+void MaskLoad(const uint16_t* mem_addr, const Mask16 mask)
 ```
 Instruction Set  : `AVX512BW` + `AVX512VL`
 
@@ -66,13 +66,13 @@ Store 256-bits (composed of 16 packed unsigned integer (16-bit) elements) into m
 ```c++
 void Store(uint16_t* mem_addr) const
 ```
-Instruction Set  : `AVX512BW` + `AVX512VL`
+Instruction Set  : `AVX`
 
 ## Linear store with mask
 Store 256-bits (composed of 16 packed unsigned integer (16-bit) elements) into memory.
 using mask(elements are zeroed out a bit of the corresponding element is not set).
 ```c++
-void Store(uint16_t* mem_addr, const Mask16 mask) const
+void MaskStore(uint16_t* mem_addr, const Mask16 mask) const
 ```
 Instruction Set  : `AVX512BW` + `AVX512VL`
 

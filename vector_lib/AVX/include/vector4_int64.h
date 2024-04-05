@@ -32,11 +32,8 @@ namespace qlm
 
 	public:
 		// Memory operations
-		virtual void Load(const int64_t* mem_addr) override;
-		void Load(const int64_t* mem_addr, const Mask4 mask);
-
-		virtual void Store(int64_t* mem_addr) const override;
-		void Store(int64_t* mem_addr, const Mask4 mask) const;
+		void MaskLoad(const int64_t* mem_addr, const Mask4 mask);
+		void MaskStore(int64_t* mem_addr, const Mask4 mask) const;
 
 	public:
 		// Compare

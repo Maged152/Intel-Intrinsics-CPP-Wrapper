@@ -81,7 +81,6 @@ TEST_P(AVXEqual, Test_AVXEqual)
         DoTest<uint64_t, qlm::v4uint64_t>(min_val, max_val);
     }
 }
-}
 
 
 // Instantiate the test case with combinations of values

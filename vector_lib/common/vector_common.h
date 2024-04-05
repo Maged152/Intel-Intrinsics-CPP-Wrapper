@@ -28,11 +28,6 @@ namespace qlm
 		virtual vec_t Min(const vec_t& in) const = 0;
 
 	public:
-		// Memory operations
-		virtual void Load(const d_t* mem_addr) = 0;
-		virtual void Store(d_t* mem_addr) const = 0;
-
-	public:
 		// Operators overloading
 		virtual d_t operator [](const size_t index) const = 0;
 

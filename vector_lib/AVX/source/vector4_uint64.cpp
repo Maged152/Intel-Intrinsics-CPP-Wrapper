@@ -72,23 +72,14 @@ namespace qlm
 	}
 
 	/***********************Memory operations********************************/
-	void v4uint64_t::Load(const uint64_t* mem_addr)
-	{
-		vec_reg = _mm256_loadu_epi64(mem_addr);
-	}
 
-	void v4uint64_t::Load(const uint64_t* mem_addr, const Mask4 mask)
+	void v4uint64_t::MaskLoad(const uint64_t* mem_addr, const Mask4 mask)
 	{
 		const v4uint64_t v_mask{ mask };
 		vec_reg = _mm256_maskload_epi64((int64_t*)mem_addr, v_mask.vec_reg);
 	}
 
-	void v4uint64_t::Store(uint64_t* mem_addr) const
-	{
-		_mm256_storeu_epi64(mem_addr, vec_reg);
-	}
-
-	void v4uint64_t::Store(uint64_t* mem_addr, const Mask4 mask) const
+	void v4uint64_t::MaskStore(uint64_t* mem_addr, const Mask4 mask) const
 	{
 		const v4uint64_t v_mask{ mask };
 		_mm256_maskstore_epi64((int64_t*)mem_addr, v_mask.vec_reg, vec_reg);

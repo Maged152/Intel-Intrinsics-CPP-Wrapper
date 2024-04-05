@@ -33,5 +33,15 @@ namespace qlm
 			return out;
 		}
 
+		// memory operation
+		void Load(const d_t* mem_addr)
+		{
+			vec_reg = _mm256_loadu_si256((__m256i*)mem_addr);
+		}
+
+		void Store(d_t* mem_addr) const
+		{
+			_mm256_storeu_si256((__m256i*)mem_addr, vec_reg);
+		}
 	};
 }

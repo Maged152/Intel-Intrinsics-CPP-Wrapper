@@ -50,14 +50,14 @@ Load 256-bits (composed of 8 packed signed integer (32-bit) elements) from memor
 ```c++
 void Load(const int32_t* mem_addr)
 ```
-Instruction Set  : `AVX512F` + `AVX512VL`
+Instruction Set  : `AVX`
 
 ## Linear load with mask
 Load 256-bits (composed of 8 packed signed integer (32-bit) elements) from memory
 using mask(elements are zeroed out a bit of the corresponding element is not set).
 
 ```c++
-void Load(const int32_t* mem_addr, const Mask8 mask)
+void MaskLoad(const int32_t* mem_addr, const Mask8 mask)
 ```
 Instruction Set  : `AVX2`
 
@@ -66,13 +66,13 @@ Store 256-bits (composed of 8 packed signed integer (32-bit) elements) into memo
 ```c++
 void Store(int32_t* mem_addr) const
 ```
-Instruction Set  : `AVX512F` + `AVX512VL`
+Instruction Set  : `AVX`
 
 ## Linear store with mask
 Store 256-bits (composed of 8 packed signed integer (32-bit) elements) into memory
 using mask(elements are zeroed out a bit of the corresponding element is not set).
 ```c++
-void Store(int32_t* mem_addr, const Mask8 mask) const
+void MaskStore(int32_t* mem_addr, const Mask8 mask) const
 ```
 Instruction Set  : `AVX2`
 

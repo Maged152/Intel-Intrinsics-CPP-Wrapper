@@ -121,13 +121,13 @@ namespace qlm
 		_mm256_storeu_ps(mem_addr, vec_reg);
 	}
 
-	void v8float_t::Load(const float* mem_addr, const Mask8 mask)
+	void v8float_t::MaskLoad(const float* mem_addr, const Mask8 mask)
 	{
 		const v8uint32_t v_mask {mask};
 		vec_reg = _mm256_maskload_ps(mem_addr, v_mask.vec_reg);
 	}
 
-	void v8float_t::Store(float* mem_addr, const Mask8 mask) const
+	void v8float_t::MaskStore(float* mem_addr, const Mask8 mask) const
 	{
 		const v8uint32_t v_mask{ mask };
 		_mm256_maskstore_ps(mem_addr, v_mask.vec_reg, vec_reg);

@@ -59,7 +59,7 @@ floating-point elements) from memory using mask(elements are zeroed out
 a bit of the corresponding element is not set).
 
 ```c++
-void Load(const double* mem_addr, const Mask4 mask)
+void MaskLoad(const double* mem_addr, const Mask4 mask)
 ```
 Instruction Set  : `AVX`
 
@@ -76,7 +76,7 @@ Store 256-bits (composed of 4 packed double-precision (64-bit)
 floating-point elements) from into memory using mask(elements are zeroed out 
 a bit of the corresponding element is not set).
 ```c++
-Store(double* mem_addr, const Mask4 mask) const
+MaskStore(double* mem_addr, const Mask4 mask) const
 ```
 Instruction Set  : `AVX`
 
