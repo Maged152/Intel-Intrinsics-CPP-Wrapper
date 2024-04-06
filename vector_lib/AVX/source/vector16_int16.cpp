@@ -1,5 +1,6 @@
 #include "vector16_int16.h"
 #include "vector16_uint16.h"
+#include "../../common/scalar.h"
 #include <cmath>
 
 namespace qlm
@@ -71,8 +72,7 @@ namespace qlm
 	/***********************Memory operations********************************/
 	void v16int16_t::MaskLoad(const int16_t* mem_addr, const Mask16 mask)
 	{
-		v16uint16_t src{ (uint16_t)0 };
-		vec_reg = _mm256_mask_loadu_epi16(src.vec_reg, mask.mask, mem_addr);
+		scalar::MaskLoad(mem_addr, mask, *this);
 	}
 
 	void v16int16_t::MaskStore(int16_t* mem_addr, const Mask16 mask) const
@@ -89,6 +89,18 @@ namespace qlm
 		                 int16_t e8, int16_t e9, int16_t e10, int16_t e11, int16_t e12, int16_t e13, int16_t e14, int16_t e15)
 	{
 		vec_reg = _mm256_setr_epi16(e0, e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15);
+	}
+
+	void v16int16_t::Set(int16_t value, const size_t index)
+	{
+		if (index < Length())
+		{
+#if _MSC_VER && !__INTEL_COMPILER
+			vec_reg.m256i_i16[index] = value;
+#else
+			vec_reg[index] = value;
+#endif
+		}
 	}
 
 	/*********************** Compare ********************************/
@@ -115,7 +127,7 @@ namespace qlm
 			return std::nanf("0");
 		}
 #if _MSC_VER && !__INTEL_COMPILER
-		return vec_reg.m256i_i32[index];
+		return vec_reg.m256i_i16[index];
 #else
 		return vec_reg[index];
 #endif

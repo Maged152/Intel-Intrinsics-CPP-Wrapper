@@ -90,6 +90,17 @@ namespace qlm
 		vec_reg = _mm256_setr_epi32(e0, e1, e2, e3, e4, e5, e6, e7);
 	}
 
+	void v8int32_t::Set(int32_t value, const size_t index)
+	{
+		if (index < Length())
+		{
+#if _MSC_VER && !__INTEL_COMPILER
+			vec_reg.m256i_i32[index] = value;
+#else
+			vec_reg[index] = value;
+#endif
+		}
+	}
 	/*********************** Compare ********************************/
 	v8int32_t v8int32_t::Equal(const v8int32_t& in) const
 	{
