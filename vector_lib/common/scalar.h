@@ -19,4 +19,16 @@ namespace scalar
 		}
 	}
 
+	template<typename d_t, typename m_t, typename v_t>
+	void MaskStore(const v_t& in, d_t* mem_addr, const m_t mask)
+	{
+		for (int i = 0; i < in.Length(); i++)
+		{
+			if (mask[i])
+			{
+				mem_addr[i] = in[i];
+			}
+		}
+	}
+
 }

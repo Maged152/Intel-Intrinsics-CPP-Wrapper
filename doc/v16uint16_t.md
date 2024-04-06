@@ -59,7 +59,7 @@ using mask(elements are zeroed out a bit of the corresponding element is not set
 ```c++
 void MaskLoad(const uint16_t* mem_addr, const Mask16 mask)
 ```
-Instruction Set  : `AVX512BW` + `AVX512VL`
+Instruction Set  : `scalar`
 
 ## Linear store
 Store 256-bits (composed of 16 packed unsigned integer (16-bit) elements) into memory.
@@ -74,7 +74,7 @@ using mask(elements are zeroed out a bit of the corresponding element is not set
 ```c++
 void MaskStore(uint16_t* mem_addr, const Mask16 mask) const
 ```
-Instruction Set  : `AVX512BW` + `AVX512VL`
+Instruction Set  : `scalar`
 
 ## Set Single 
 Broadcast unsigned integer (16-bit) value to all elements 

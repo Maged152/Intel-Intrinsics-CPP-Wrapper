@@ -1,4 +1,5 @@
 #include "vector16_uint16.h"
+#include "../../common/scalar.h"
 #include <cmath>
 
 namespace qlm
@@ -75,13 +76,12 @@ namespace qlm
 	/***********************Memory operations********************************/
 	void v16uint16_t::MaskLoad(const uint16_t* mem_addr, const Mask16 mask)
 	{
-		v16uint16_t src{ (uint16_t)0 };
-		vec_reg = _mm256_mask_loadu_epi16(src.vec_reg, mask.mask, mem_addr);
+		scalar::MaskLoad(mem_addr, mask, *this);
 	}
 
 	void v16uint16_t::MaskStore(uint16_t* mem_addr, const Mask16 mask) const
 	{
-		_mm256_mask_storeu_epi16(mem_addr, mask.mask, vec_reg);
+		scalar::MaskStore(*this, mem_addr, mask);
 	}
 
 	/*********************** Set ********************************/
@@ -93,7 +93,7 @@ namespace qlm
 	void v16uint16_t::Set(const uint16_t value, const int index)
 	{
 #if _MSC_VER && !__INTEL_COMPILER
-		vec_reg.m256i_i32[index] = value;
+		vec_reg.m256i_u16[index] = value;
 #else
 		vec_reg[index] = value;
 #endif
@@ -147,7 +147,7 @@ namespace qlm
 			return std::nanf("0");
 		}
 #if _MSC_VER && !__INTEL_COMPILER
-		return vec_reg.m256i_i32[index];
+		return vec_reg.m256i_u16[index];
 #else
 		return vec_reg[index];
 #endif

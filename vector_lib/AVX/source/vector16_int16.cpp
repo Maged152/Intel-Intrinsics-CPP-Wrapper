@@ -77,7 +77,7 @@ namespace qlm
 
 	void v16int16_t::MaskStore(int16_t* mem_addr, const Mask16 mask) const
 	{
-		_mm256_mask_storeu_epi16(mem_addr, mask.mask, vec_reg);
+		scalar::MaskStore(*this, mem_addr, mask);
 	}
 
 	/*********************** Set ********************************/
