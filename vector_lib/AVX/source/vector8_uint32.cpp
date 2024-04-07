@@ -1,5 +1,5 @@
 #include "vector8_uint32.h"
-#include <cmath>
+#include "../../common/scalar.h"
 
 namespace qlm
 {
@@ -134,7 +134,7 @@ namespace qlm
 	v8uint32_t v8uint32_t::Greater(const v8uint32_t& in) const
 	{
 		v8uint32_t out;
-		out.vec_reg = _mm256_movm_epi32(_mm256_cmpgt_epu32_mask(vec_reg, in.vec_reg));
+		scalar::Greater(*this, in, out);
 		return out;
 	}
 

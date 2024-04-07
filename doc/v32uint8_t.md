@@ -61,7 +61,7 @@ using mask(elements are zeroed out a bit of the corresponding element is not set
 ```c++
 void MaskLoad(const uint8_t* mem_addr, const Mask32 mask)
 ```
-Instruction Set  : `AVX512BW` + `AVX512VL`
+Instruction Set  : `scalar`
 
 ## Linear store
 Store 256-bits (composed of 32 packed unsigned integer (8-bit) elements) from memory.
@@ -76,7 +76,7 @@ using mask(elements are zeroed out a bit of the corresponding element is not set
 ```c++
 void MaskStore(uint8_t* mem_addr, const Mask32 mask) const
 ```
-Instruction Set  : `AVX512BW` + `AVX512VL`
+Instruction Set  : `scalar
 
 
 ## Set Single 
@@ -186,4 +186,4 @@ Checks if `this` vector is greater than `other` vector.
 ```c++
 v32uuint8_t Greater(const v32uuint8_t& in) const;
 ```
-Instruction Set  : `AVX2`
+Instruction Set  : `scalar`

@@ -1,5 +1,5 @@
 #include "vector32_uint8.h"
-#include <cmath>
+#include "../../common/scalar.h"
 #include <limits>
 
 namespace qlm
@@ -72,13 +72,12 @@ namespace qlm
 	/***********************Memory operations********************************/
 	void v32uint8_t::MaskLoad(const uint8_t* mem_addr, const Mask32 mask)
 	{
-		v32uint8_t src{ (uint8_t)0 };
-		vec_reg = _mm256_mask_loadu_epi8(src.vec_reg, mask.mask, mem_addr);
+		scalar::MaskLoad(mem_addr, mask, *this);
 	}
 
 	void v32uint8_t::MaskStore(uint8_t* mem_addr, const Mask32 mask) const
 	{
-		_mm256_mask_storeu_epi8(mem_addr, mask.mask, vec_reg);
+		scalar::MaskStore(*this, mem_addr, mask);
 	}
 
 	/*********************** Set ********************************/
@@ -134,7 +133,7 @@ namespace qlm
 	v32uint8_t v32uint8_t::Greater(const v32uint8_t& in) const
 	{
 		v32uint8_t out;
-		out.vec_reg = _mm256_movm_epi8(_mm256_cmpgt_epu8_mask(vec_reg, in.vec_reg));
+		scalar::Greater(*this, in, out);
 		return out;
 	}
 

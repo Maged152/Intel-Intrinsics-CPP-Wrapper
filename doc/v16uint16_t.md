@@ -191,4 +191,4 @@ Checks if `this` vector is greater than `other` vector.
 ```c++
 v16uint16_t Greater(const v16uint16_t& in) const;
 ```
-Instruction Set  : `AVX512BW` + `AVX512VL`
+Instruction Set  : `scalar`

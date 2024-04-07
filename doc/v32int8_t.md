@@ -61,7 +61,7 @@ using mask(elements are zeroed out a bit of the corresponding element is not set
 ```c++
 void MaskLoad(const int8_t* mem_addr, const Mask32 mask)
 ```
-Instruction Set  : `AVX512BW` + `AVX512VL`
+Instruction Set  : `scalar`
 
 ## Linear store
 Store 256-bits (composed of 32 packed signed integer (8-bit) elements) from memory.
@@ -76,7 +76,7 @@ using mask(elements are zeroed out a bit of the corresponding element is not set
 ```c++
 void MaskStore(int8_t* mem_addr, const Mask32 mask) const
 ```
-Instruction Set  : `AVX512BW` + `AVX512VL`
+Instruction Set  : `scalar`
 
 
 ## Set Single 

@@ -1,7 +1,6 @@
 #include "vector16_int16.h"
 #include "vector16_uint16.h"
 #include "../../common/scalar.h"
-#include <cmath>
 
 namespace qlm
 {

@@ -1,6 +1,5 @@
 #include "vector16_uint16.h"
 #include "../../common/scalar.h"
-#include <cmath>
 
 namespace qlm
 {
@@ -134,7 +133,7 @@ namespace qlm
 	v16uint16_t v16uint16_t::Greater(const v16uint16_t& in) const
 	{
 		v16uint16_t out;
-		out.vec_reg = _mm256_movm_epi16(_mm256_cmpgt_epu16_mask(vec_reg, in.vec_reg));
+		scalar::Greater(*this, in, out);
 		return out;
 	}
 

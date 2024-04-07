@@ -190,4 +190,4 @@ Checks if `this` vector is greater than `other` vector.
 ```c++
 v8uint32_t Greater(const v8uint32_t& in) const;
 ```
-Instruction Set  : `AVX2`
+Instruction Set  : `scalar`
