@@ -1,5 +1,6 @@
 #pragma once
 #include "vector_common.h"
+#include <cmath>
 
 namespace scalar
 {
@@ -31,4 +32,33 @@ namespace scalar
 		}
 	}
 
+	template<typename v_t>
+	void Max(const v_t& in1, const v_t& in2, v_t& out)
+	{
+		for (int i = 0; i < in.Length(); i++)
+		{
+			out.set(std::max(in1[i], in2[i], i);
+		}
+	}
+
+	template<typename v_t>
+	void Min(const v_t& in1, const v_t& in2, v_t& out)
+	{
+		for (int i = 0; i < in.Length(); i++)
+		{
+			out.set(std::min(in1[i], in2[i], i);
+		}
+	}
+
+	template<typename v_t>
+	void Greater(const v_t& in1, const v_t& in2, v_t& out)
+	{
+		for (int i = 0; i < in.Length(); i++)
+		{
+			if (in1[i] > in2[i))
+				out.set(1, i);
+			else
+				out.set(0, i);
+		}
+	}
 }

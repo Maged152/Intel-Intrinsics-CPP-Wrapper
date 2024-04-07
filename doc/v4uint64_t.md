@@ -111,14 +111,14 @@ v4uint64_t Sub(const v4uint64_t& other) const
 Instruction Set  : `AVX2`
 
 ## Multiplication Low
-Performs element-wise multiplication of `this` vector and the `other` vector,
-producing intermediate 128-bit integers, and store the low 64 bits and
-returns a vector containing the result.
+Multiply the low unsigned 32-bit integers from each
+packed 64-bit element in `this` and `other`, and 
+return the unsigned 64-bit results.
 
 ```c++
 v4uint64_t MulLo(const v4uint64_t& other) const
 ```
-Instruction Set  : `AVX512DQ` + `AVX512VL`
+Instruction Set  : `AVX2`
 
 ## Division
 Performs element-wise division of `this` vector and the `other` vector, and
@@ -166,7 +166,7 @@ returns a vector containing the max elements.
 ```c++
 v4uint64_t Max(const v4uint64_t& other) const
 ```
-Instruction Set  : `AVX512F' + 'AVX512VL`
+Instruction Set  : `scalar`
 
 ## Minimum 
 compare element-wise between `this` vector and the `other` vector, and 
@@ -174,7 +174,7 @@ returns a vector containing the min elements.
 ```c++
 v4uint64_t Min(const v4uint64_t& other) const
 ```
-Instruction Set  : `AVX512F' + 'AVX512VL`
+Instruction Set  : `scalar`
 
 ## Equal
 Checks if `this` vector and the `other` vector are equals.
@@ -190,4 +190,4 @@ Checks if `this` vector is greater than `other` vector.
 ```c++
 v4uint64_t Greater(const v4uint64_t& in) const;
 ```
-Instruction Set  : (`AVX512F` + `AVX512VL`) & (`AVX512DQ` + `AVX512VL`)
+Instruction Set  : `scalar`

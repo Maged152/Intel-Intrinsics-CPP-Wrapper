@@ -29,6 +29,7 @@ namespace qlm
 		// Set 
 		void Set(int64_t value);
 		void Set(int64_t e0, int64_t e1, int64_t e2, int64_t e3);
+		void Set(const int64_t value, const int index);
 
 	public:
 		// Memory operations

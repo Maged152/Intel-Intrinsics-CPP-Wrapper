@@ -1,6 +1,6 @@
 #include "vector4_int64.h"
 #include "vector4_uint64.h"
-#include <cmath>
+#include "../../common/scalar.h"
 
 namespace qlm
 {
@@ -48,7 +48,7 @@ namespace qlm
 	v4int64_t v4int64_t::MulLo(const v4int64_t& in) const
 	{
 		v4int64_t out;
-		out.vec_reg = _mm256_mullo_epi64(vec_reg, in.vec_reg);
+		out.vec_reg = _mm256_mul_epi32(vec_reg, in.vec_reg);
 		return out;
 	}
 
@@ -56,14 +56,14 @@ namespace qlm
 	v4int64_t v4int64_t::Max(const v4int64_t& in) const
 	{
 		v4int64_t out;
-		out.vec_reg = _mm256_max_epi64(vec_reg, in.vec_reg);
+		scalar::Max(*this, in, out);
 		return out;
 	}
 
 	v4int64_t v4int64_t::Min(const v4int64_t& in) const
 	{
 		v4int64_t out;
-		out.vec_reg = _mm256_min_epi64(vec_reg, in.vec_reg);
+		scalar::Min(*this, in, out);
 		return out;
 	}
 
@@ -90,6 +90,14 @@ namespace qlm
 		vec_reg = _mm256_setr_epi64x(e0, e1, e2, e3);
 	}
 
+	void v4int64_t::Set(const int64_t value, const int index)
+	{
+#if _MSC_VER && !__INTEL_COMPILER
+		vec_reg.m256i_i64[index] = value;
+#else
+		vec_reg[index] = value;
+#endif
+	}
 	/*********************** Compare ********************************/
 	v4int64_t v4int64_t::Equal(const v4int64_t& in) const
 	{

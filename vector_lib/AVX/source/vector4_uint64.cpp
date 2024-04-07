@@ -1,5 +1,5 @@
 #include "vector4_uint64.h"
-#include <cmath>
+#include "../../common/scalar.h"
 
 namespace qlm
 {
@@ -52,7 +52,7 @@ namespace qlm
 	v4uint64_t v4uint64_t::MulLo(const v4uint64_t& in) const
 	{
 		v4uint64_t out;
-		out.vec_reg = _mm256_mullo_epi64(vec_reg, in.vec_reg);
+		out.vec_reg = _mm256_mul_epu32(vec_reg, in.vec_reg);
 		return out;
 	}
 
@@ -60,14 +60,14 @@ namespace qlm
 	v4uint64_t v4uint64_t::Max(const v4uint64_t& in) const
 	{
 		v4uint64_t out;
-		out.vec_reg = _mm256_max_epu64(vec_reg, in.vec_reg);
+		scalar::Max(*this, in, out);
 		return out;
 	}
 
 	v4uint64_t v4uint64_t::Min(const v4uint64_t& in) const
 	{
 		v4uint64_t out;
-		out.vec_reg = _mm256_min_epu64(vec_reg, in.vec_reg);
+		scalar::Min(*this, in, out);
 		return out;
 	}
 
@@ -94,7 +94,7 @@ namespace qlm
 	void v4uint64_t::Set(const uint64_t value, const int index)
 	{
 #if _MSC_VER && !__INTEL_COMPILER
-		vec_reg.m256i_i64[index] = value;
+		vec_reg.m256i_u64[index] = value;
 #else
 		vec_reg[index] = value;
 #endif
@@ -134,7 +134,7 @@ namespace qlm
 	v4uint64_t v4uint64_t::Greater(const v4uint64_t& in) const
 	{
 		v4uint64_t out;
-		out.vec_reg = _mm256_movm_epi64(_mm256_cmpgt_epu64_mask(vec_reg, in.vec_reg));
+		scalar::Greater(*this, in, out);
 		return out;
 	}
 
@@ -147,7 +147,7 @@ namespace qlm
 			return std::nanf("0");
 		}
 #if _MSC_VER && !__INTEL_COMPILER
-		return vec_reg.m256i_i64[index];
+		return vec_reg.m256i_u64[index];
 #else
 		return vec_reg[index];
 #endif
